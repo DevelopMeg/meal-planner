@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import Menu from "../subcomponents/Menu";
 
 class StructureSettings extends Component {
   state = {
@@ -146,6 +147,12 @@ class StructureSettings extends Component {
     }));
   };
 
+  handleRedirect = () => {
+    this.setState({
+      saveChanges: true,
+    });
+  };
+
   render() {
     const {
       allDaysForPlan,
@@ -209,6 +216,12 @@ class StructureSettings extends Component {
 
     return (
       <>
+        {this.props.statusSetStructureSettings ? (
+          <Menu shoppingListLength={this.props.shoppingListLength} />
+        ) : (
+          "Please at the first, set planner structure"
+        )}
+
         <section>
           <section>
             <h3>Please, choose days of week, which you want plan:</h3>
@@ -245,6 +258,10 @@ class StructureSettings extends Component {
           </section>
 
           <button
+            onClick={() => {
+              this.props.handleSaveStructureSetting(daysSetting, mealsSetting);
+              this.handleRedirect();
+            }}
             disabled={
               daysSetting.length === 0 || mealsSetting.length === 0
                 ? true
