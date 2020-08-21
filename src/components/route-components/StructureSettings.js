@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 
 class StructureSettings extends Component {
   state = {
@@ -25,6 +26,126 @@ class StructureSettings extends Component {
     saveChanges: false,
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.daysForPlan !== this.state.daysForPlan ||
+      prevState.mealsForPlan !== this.state.mealsForPlan
+    ) {
+      let optionForPlan;
+
+      prevState.daysForPlan !== this.state.daysForPlan
+        ? (optionForPlan = [...this.state.daysForPlan])
+        : (optionForPlan = [...this.state.mealsForPlan]);
+
+      const arrChooseItems = optionForPlan.filter((item) => {
+        return item.isChecked;
+      });
+
+      const nameChooseItems = arrChooseItems.map((item) => {
+        return item.value;
+      });
+
+      if (prevState.daysForPlan !== this.state.daysForPlan) {
+        this.setState({
+          daysSetting: nameChooseItems,
+        });
+      } else {
+        this.setState({
+          mealsSetting: nameChooseItems,
+        });
+      }
+    }
+
+    if (prevState.allDaysForPlan !== this.state.allDaysForPlan) {
+      if (this.state.allDaysForPlan.isChecked) {
+        const daysForPlan = [...this.state.daysForPlan];
+
+        const nameListDays = daysForPlan.map((item) => {
+          return item.value;
+        });
+
+        this.setState({
+          daysSetting: nameListDays,
+        });
+      } else {
+        this.setState({
+          daysSetting: [],
+        });
+      }
+    }
+
+    if (prevState.allMealsForPlan !== this.state.allMealsForPlan) {
+      if (this.state.allMealsForPlan.isChecked) {
+        const mealsForPlan = [...this.state.mealsForPlan];
+
+        const nameListMeals = mealsForPlan.map((item) => {
+          return item.value;
+        });
+
+        this.setState({
+          mealsSetting: nameListMeals,
+        });
+      } else {
+        this.setState({
+          mealsSetting: [],
+        });
+      }
+    }
+  }
+
+  handleChangeCheckedItem = (e) => {
+    let optionForPlan;
+
+    e.target.name === "daysForPlan"
+      ? (optionForPlan = [...this.state.daysForPlan])
+      : (optionForPlan = [...this.state.mealsForPlan]);
+
+    const idChooseItem = optionForPlan.findIndex((item) => {
+      return item.value === e.target.id;
+    });
+
+    optionForPlan[idChooseItem] = {
+      ...optionForPlan[idChooseItem],
+      isChecked: !optionForPlan[idChooseItem].isChecked,
+    };
+
+    if (e.target.name === "daysForPlan") {
+      this.setState({
+        daysForPlan: optionForPlan,
+      });
+    } else {
+      this.setState({
+        mealsForPlan: optionForPlan,
+      });
+    }
+  };
+
+  handleChangeAllCheckedDays = () => {
+    this.setState((prevState) => ({
+      daysForPlan: prevState.daysForPlan.map((item) => {
+        return { ...item, isChecked: false };
+      }),
+
+      allDaysForPlan: {
+        ...prevState.allDaysForPlan,
+        isChecked: !prevState.allDaysForPlan.isChecked,
+      },
+    }));
+  };
+
+  handleChangeAllCheckedMeals = () => {
+    this.setState((prevState) => ({
+      mealsForPlan: prevState.mealsForPlan.map((item) => {
+        return { ...item, isChecked: false };
+      }),
+
+      allMealsForPlan: {
+        ...prevState.allMealsForPlan,
+        isChecked: !prevState.allMealsForPlan.isChecked,
+      },
+    }));
+  };
+
   render() {
     const {
       allDaysForPlan,
@@ -44,6 +165,7 @@ class StructureSettings extends Component {
             type="checkbox"
             name="daysForPlan"
             checked={item.isChecked}
+            onChange={this.handleChangeCheckedItem}
             disabled={allDaysForPlan.isChecked ? true : false}
           />
           <label
@@ -66,6 +188,7 @@ class StructureSettings extends Component {
             type="checkbox"
             name="mealsForPlan"
             checked={item.isChecked}
+            onChange={this.handleChangeCheckedItem}
             disabled={allMealsForPlan.isChecked ? true : false}
           />
           <label
@@ -80,6 +203,10 @@ class StructureSettings extends Component {
       );
     });
 
+    if (saveChanges) {
+      return <Redirect to="/" exact />;
+    }
+
     return (
       <>
         <section>
@@ -90,6 +217,7 @@ class StructureSettings extends Component {
                 id={allDaysForPlan.value}
                 type="checkbox"
                 checked={allDaysForPlan.isChecked}
+                onChange={this.handleChangeAllCheckedDays}
               />
               <label htmlFor={allDaysForPlan.value}>
                 {allDaysForPlan.value}
@@ -106,6 +234,7 @@ class StructureSettings extends Component {
                 id={allMealsForPlan.value}
                 type="checkbox"
                 checked={allMealsForPlan.isChecked}
+                onChange={this.handleChangeAllCheckedMeals}
               />
               <label htmlFor={allMealsForPlan.value}>
                 {allMealsForPlan.value}
@@ -115,7 +244,15 @@ class StructureSettings extends Component {
             {inputsMeals}
           </section>
 
-          <button>save</button>
+          <button
+            disabled={
+              daysSetting.length === 0 || mealsSetting.length === 0
+                ? true
+                : false
+            }
+          >
+            save
+          </button>
         </section>
       </>
     );
