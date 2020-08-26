@@ -16,6 +16,15 @@ class RouteSections extends Component {
     daysSet: "",
     mealsSet: "",
     statusSetStructureSettings: false,
+    infoDish: {
+      id: "",
+      categoryDish: "",
+      nameDish: "",
+      ingredient: "",
+      ingredients: [],
+      kcal: "",
+      setForDay: "",
+    },
   };
 
   // structure settings
@@ -28,8 +37,83 @@ class RouteSections extends Component {
     });
   };
 
+  // add dish to list dishes
+
+  handleChangeChooseCategory = (e) => {
+    const valueCategoryDish = e.target.value;
+
+    this.setState((prevState) => ({
+      infoDish: {
+        ...prevState.infoDish,
+        categoryDish: valueCategoryDish,
+      },
+    }));
+  };
+
+  handleChangeValueInfoDish = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    this.setState((prevState) => ({
+      infoDish: {
+        ...prevState.infoDish,
+        [name]: value,
+      },
+    }));
+  };
+
+  handleAddIngredients = (e) => {
+    e.preventDefault();
+    const ingredientName = this.state.infoDish.ingredient;
+    const ingredients = [...this.state.infoDish.ingredients];
+
+    const generateId = Math.random().toString(36).substr(2, 9);
+
+    const ingredient = { name: ingredientName, id: generateId, added: false };
+
+    ingredients.push(ingredient);
+
+    this.setState((prevState) => ({
+      infoDish: {
+        ...prevState.infoDish,
+        ingredient: "",
+        ingredients,
+      },
+    }));
+  };
+
+  handleDeleteIngredients = (e) => {
+    e.preventDefault();
+    const parent = e.target.parentNode.id;
+
+    const ingredients = [...this.state.infoDish.ingredients];
+
+    ingredients.splice(parent, 1);
+
+    this.setState((prevState) => ({
+      infoDish: {
+        ...prevState.infoDish,
+        ingredients,
+      },
+    }));
+  };
+
+  // clear
+
+  handleClearValues = () => {
+    this.setState({
+      infoDish: {
+        categoryDish: "",
+        nameDish: "",
+        ingredient: "",
+        ingredients: [],
+        kcal: "",
+      },
+    });
+  };
+
   render() {
-    const { statusSetStructureSettings } = this.state;
+    const { statusSetStructureSettings, infoDish, mealsSet } = this.state;
 
     return (
       <main>
@@ -96,7 +180,17 @@ class RouteSections extends Component {
           <Route
             path="/add-dish"
             render={() => {
-              return <AddDish />;
+              return (
+                <AddDish
+                  infoDish={infoDish}
+                  mealsSet={mealsSet}
+                  handleChangeChooseCategory={this.handleChangeChooseCategory}
+                  handleChangeValueInfoDish={this.handleChangeValueInfoDish}
+                  handleAddIngredients={this.handleAddIngredients}
+                  handleDeleteIngredients={this.handleDeleteIngredients}
+                  handleClearValues={this.handleClearValues}
+                />
+              );
             }}
           />
 
