@@ -20,7 +20,12 @@ const AddDish = (props) => {
         come back
       </button>
 
-      <form>
+      <form
+        onSubmit={(e) => {
+          props.handleAddDishToList(e);
+          handleComeBack();
+        }}
+      >
         <MainStructureAddEditDish
           titleForm="add new dish"
           titleBtnSubmit="add new dish to list"

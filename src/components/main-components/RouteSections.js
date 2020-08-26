@@ -98,6 +98,38 @@ class RouteSections extends Component {
     }));
   };
 
+  handleAddDishToList = (e) => {
+    e.preventDefault();
+    const listDishes = [...this.state.listDishes];
+
+    const generateId = Math.random().toString(36).substr(2, 9);
+
+    const { categoryDish, nameDish, ingredients, kcal } = this.state.infoDish;
+
+    listDishes.push({
+      id: generateId,
+      addedDish: false,
+      categoryDish: categoryDish,
+      nameDish: nameDish,
+      ingredients: ingredients,
+      kcal: kcal,
+      setForDay: "",
+    });
+
+    this.setState({
+      infoDish: {
+        id: "",
+        categoryDish: "",
+        nameDish: "",
+        ingredient: "",
+        ingredients: [],
+        kcal: "",
+        setForDay: "",
+      },
+      listDishes,
+    });
+  };
+
   // clear
 
   handleClearValues = () => {
@@ -189,6 +221,7 @@ class RouteSections extends Component {
                   handleAddIngredients={this.handleAddIngredients}
                   handleDeleteIngredients={this.handleDeleteIngredients}
                   handleClearValues={this.handleClearValues}
+                  handleAddDishToList={this.handleAddDishToList}
                 />
               );
             }}
