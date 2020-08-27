@@ -25,6 +25,7 @@ class RouteSections extends Component {
       kcal: "",
       setForDay: "",
     },
+    listDishes: [],
   };
 
   // structure settings
@@ -130,6 +131,24 @@ class RouteSections extends Component {
     });
   };
 
+  // list dishes
+
+  handleDeleteDishOfList = (e) => {
+    const listDishes = [...this.state.listDishes];
+
+    const idDish = e.target.parentNode.parentNode.id;
+
+    const idDishToDelete = listDishes.findIndex((dish) => {
+      return idDish === dish.id;
+    });
+
+    listDishes.splice(idDishToDelete, 1);
+
+    this.setState({
+      listDishes,
+    });
+  };
+
   // clear
 
   handleClearValues = () => {
@@ -205,7 +224,13 @@ class RouteSections extends Component {
           <Route
             path="/list-dishes"
             render={() => {
-              return <ListDishes mealsSet={mealsSet} listDishes={listDishes} />;
+              return (
+                <ListDishes
+                  mealsSet={mealsSet}
+                  listDishes={listDishes}
+                  handleDeleteDishOfList={this.handleDeleteDishOfList}
+                />
+              );
             }}
           />
 
