@@ -205,7 +205,7 @@ class RouteSections extends Component {
           <Route
             path="/list-dishes"
             render={() => {
-              return <ListDishes />;
+              return <ListDishes mealsSet={mealsSet} listDishes={listDishes} />;
             }}
           />
 
