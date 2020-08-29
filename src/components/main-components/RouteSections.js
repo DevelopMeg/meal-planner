@@ -149,6 +149,32 @@ class RouteSections extends Component {
     });
   };
 
+  handleOpenEditDish = (e) => {
+    const listDishes = [...this.state.listDishes];
+
+    const dishId = e.target.parentNode.parentNode.id;
+
+    const idEditDish = listDishes.findIndex((dish) => {
+      return dishId === dish.id;
+    });
+
+    const editDish = listDishes[idEditDish];
+
+    this.setState({
+      infoDish: {
+        addedDish: false,
+        id: editDish.id,
+        categoryDish: editDish.categoryDish,
+        nameDish: editDish.nameDish,
+        ingredient: "",
+        ingredients: editDish.ingredients,
+        kcal: editDish.kcal,
+        setForDay: "",
+      },
+      idEditDish: idEditDish,
+    });
+  };
+
   // clear
 
   handleClearValues = () => {
@@ -247,6 +273,7 @@ class RouteSections extends Component {
                   handleDeleteIngredients={this.handleDeleteIngredients}
                   handleClearValues={this.handleClearValues}
                   handleAddDishToList={this.handleAddDishToList}
+                  handleOpenEditDish={this.handleOpenEditDish}
                 />
               );
             }}

@@ -141,7 +141,7 @@ class ListDishes extends Component {
   };
 
   render() {
-    const { handleDeleteDishOfList, mealsSet } = this.props;
+    const { handleDeleteDishOfList, mealsSet, handleOpenEditDish } = this.props;
 
     const {
       currentShowListDishes,
@@ -174,7 +174,9 @@ class ListDishes extends Component {
       return (
         <div key={id} id={dish.id}>
           <div>
-            <NavLink to="/edit-dish">edit</NavLink>
+            <NavLink to="/edit-dish" onClick={handleOpenEditDish}>
+              edit
+            </NavLink>
             <span
               onClick={(e) => {
                 handleDeleteDishOfList(e);
