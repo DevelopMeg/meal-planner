@@ -149,7 +149,10 @@ class RouteSections extends Component {
     });
   };
 
+  // edit dish
+
   handleOpenEditDish = (e) => {
+    debugger;
     const listDishes = [...this.state.listDishes];
 
     const dishId = e.target.parentNode.parentNode.id;
@@ -175,6 +178,17 @@ class RouteSections extends Component {
     });
   };
 
+  handleEditDish = (e) => {
+    e.preventDefault();
+    const listDishes = [...this.state.listDishes];
+
+    listDishes[this.state.idEditDish] = this.state.infoDish;
+
+    this.setState({
+      listDishes,
+    });
+  };
+
   // clear
 
   handleClearValues = () => {
@@ -190,7 +204,12 @@ class RouteSections extends Component {
   };
 
   render() {
-    const { statusSetStructureSettings, infoDish, mealsSet } = this.state;
+    const {
+      statusSetStructureSettings,
+      infoDish,
+      mealsSet,
+      listDishes,
+    } = this.state;
 
     return (
       <main>
@@ -255,6 +274,7 @@ class RouteSections extends Component {
                   mealsSet={mealsSet}
                   listDishes={listDishes}
                   handleDeleteDishOfList={this.handleDeleteDishOfList}
+                  handleOpenEditDish={this.handleOpenEditDish}
                 />
               );
             }}
@@ -273,7 +293,6 @@ class RouteSections extends Component {
                   handleDeleteIngredients={this.handleDeleteIngredients}
                   handleClearValues={this.handleClearValues}
                   handleAddDishToList={this.handleAddDishToList}
-                  handleOpenEditDish={this.handleOpenEditDish}
                 />
               );
             }}
@@ -282,7 +301,18 @@ class RouteSections extends Component {
           <Route
             path="/edit-dish"
             render={() => {
-              return <EditDish />;
+              return (
+                <EditDish
+                  infoDish={infoDish}
+                  mealsSet={mealsSet}
+                  handleEditDish={this.handleEditDish}
+                  handleClearValues={this.handleClearValues}
+                  handleChangeChooseCategory={this.handleChangeChooseCategory}
+                  handleChangeValueInfoDish={this.handleChangeValueInfoDish}
+                  handleAddIngredients={this.handleAddIngredients}
+                  handleDeleteIngredients={this.handleDeleteIngredients}
+                />
+              );
             }}
           />
 
