@@ -6,7 +6,7 @@ import ProductList from "../subcomponents/ShoppingListComponents/ProductList";
 const ShoppingList = (props) => {
   return (
     <>
-      <Menu />
+      <Menu shoppingListLength={props.shoppingList.length} />
       <section>
         <AddProduct
           infoProduct={props.infoProduct}

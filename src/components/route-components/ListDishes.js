@@ -141,7 +141,12 @@ class ListDishes extends Component {
   };
 
   render() {
-    const { handleDeleteDishOfList, mealsSet, handleOpenEditDish } = this.props;
+    const {
+      handleDeleteDishOfList,
+      mealsSet,
+      handleOpenEditDish,
+      shoppingListLength,
+    } = this.props;
 
     const {
       currentShowListDishes,
@@ -194,7 +199,7 @@ class ListDishes extends Component {
 
     return (
       <>
-        <Menu />
+        <Menu shoppingListLength={shoppingListLength} />
         <button onClick={this.handleStatusOpenAddDishToList}>
           add new dish
         </button>

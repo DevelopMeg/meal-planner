@@ -321,6 +321,7 @@ class RouteSections extends Component {
                 <StructureSettings
                   handleSaveStructureSetting={this.handleSaveStructureSetting}
                   statusSetStructureSettings={statusSetStructureSettings}
+                  shoppingListLength={shoppingList.length}
                 />
               );
             }}
@@ -331,7 +332,7 @@ class RouteSections extends Component {
             exact
             render={() => {
               return statusSetStructureSettings ? (
-                <HomePage />
+                <HomePage shoppingListLength={shoppingList.length} />
               ) : (
                 <Redirect to="/structure-settings" />
               );
@@ -389,6 +390,7 @@ class RouteSections extends Component {
                   listDishes={listDishes}
                   handleDeleteDishOfList={this.handleDeleteDishOfList}
                   handleOpenEditDish={this.handleOpenEditDish}
+                  shoppingListLength={shoppingList.length}
                 />
               );
             }}

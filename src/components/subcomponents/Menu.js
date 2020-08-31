@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Menu = () => {
+const Menu = (props) => {
   const menuTxt = [
     { path: "/plan-meals", text: "plan meals" },
     { path: "/shopping-list", text: "shopping list" },
@@ -15,6 +15,7 @@ const Menu = () => {
         <NavLink to={item.path} className="menu__link">
           {item.text}
         </NavLink>
+        {item.text === "shopping list" ? props.shoppingListLength : null}
       </li>
     );
   });
