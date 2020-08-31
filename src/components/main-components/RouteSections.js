@@ -26,6 +26,13 @@ class RouteSections extends Component {
       setForDay: "",
     },
     listDishes: [],
+
+    infoProduct: {
+      id: "",
+      name: "",
+      count: "",
+    },
+    shoppingList: [],
   };
 
   // structure settings
@@ -189,6 +196,38 @@ class RouteSections extends Component {
     });
   };
 
+  // shopping list
+
+  handleChangeInfoProduct = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    this.setState((prevState) => ({
+      infoProduct: {
+        ...prevState.infoProduct,
+        [name]: value,
+      },
+    }));
+  };
+
+  handleAddProductToShoppingList = (nameProduct, countProduct, e) => {
+    e.preventDefault();
+    const shoppingList = [...this.state.shoppingList];
+    const generateId = Math.random().toString(36).substr(2, 9);
+
+    const product = { name: nameProduct, count: countProduct, id: generateId };
+
+    shoppingList.push(product);
+
+    this.setState({
+      infoProduct: {
+        name: "",
+        count: "",
+      },
+      shoppingList,
+    });
+  };
+
   // clear
 
   handleClearValues = () => {
@@ -262,7 +301,16 @@ class RouteSections extends Component {
           <Route
             path="/shopping-list"
             render={() => {
-              return <ShoppingList />;
+              return (
+                <ShoppingList
+                  infoProduct={infoProduct}
+                  shoppingList={shoppingList}
+                  handleAddProductToShoppingList={
+                    this.handleAddProductToShoppingList
+                  }
+                  handleChangeInfoProduct={this.handleChangeInfoProduct}
+                />
+              );
             }}
           />
 
