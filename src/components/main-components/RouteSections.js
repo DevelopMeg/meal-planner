@@ -33,6 +33,8 @@ class RouteSections extends Component {
       count: "",
     },
     shoppingList: [],
+    statusOpenEditProduct: false,
+    idEditProduct: "",
   };
 
   // structure settings
@@ -228,6 +230,61 @@ class RouteSections extends Component {
     });
   };
 
+  handleOpenEditProductList = (e) => {
+    const shoppingList = [...this.state.shoppingList];
+
+    const productId = e.target.parentNode.parentNode.id;
+
+    const idEditProduct = shoppingList.findIndex((product) => {
+      return productId === product.id;
+    });
+
+    const editProduct = shoppingList[idEditProduct];
+
+    this.setState({
+      infoProduct: {
+        id: editProduct.id,
+        name: editProduct.name,
+        count: editProduct.count,
+      },
+      idEditProduct,
+      statusOpenEditProduct: true,
+    });
+  };
+
+  handleDeleteProductList = (e) => {
+    const shoppingList = [...this.state.shoppingList];
+
+    const parentId = e.target.parentNode.parentNode.id;
+
+    const idDeleteItem = shoppingList.findIndex((item) => {
+      return item.id === parentId;
+    });
+
+    shoppingList.splice(idDeleteItem, 1);
+
+    this.setState({
+      shoppingList,
+    });
+  };
+
+  handleEditProductList = (e) => {
+    e.preventDefault();
+    const shoppingList = [...this.state.shoppingList];
+
+    shoppingList[this.state.idEditProduct] = this.state.infoProduct;
+
+    this.setState({
+      infoProduct: {
+        id: "",
+        name: "",
+        count: "",
+      },
+      shoppingList,
+      statusOpenEditProduct: false,
+    });
+  };
+
   // clear
 
   handleClearValues = () => {
@@ -248,6 +305,10 @@ class RouteSections extends Component {
       infoDish,
       mealsSet,
       listDishes,
+      infoProduct,
+      shoppingList,
+      statusOpenEditProduct,
+      idEditProduct,
     } = this.state;
 
     return (
@@ -309,6 +370,11 @@ class RouteSections extends Component {
                     this.handleAddProductToShoppingList
                   }
                   handleChangeInfoProduct={this.handleChangeInfoProduct}
+                  statusOpenEditProduct={statusOpenEditProduct}
+                  idEditProduct={idEditProduct}
+                  handleEditProductList={this.handleEditProductList}
+                  handleOpenEditProductList={this.handleOpenEditProductList}
+                  handleDeleteProductList={this.handleDeleteProductList}
                 />
               );
             }}

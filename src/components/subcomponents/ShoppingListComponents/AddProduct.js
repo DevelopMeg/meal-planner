@@ -3,8 +3,18 @@ import React from "react";
 const AddProduct = (props) => {
   const { name, count } = props.infoProduct;
 
+  const conditionInputDisabled =
+    props.statusOpenEditProduct &&
+    props.shoppingList[props.idEditProduct].added !== undefined;
+
   return (
-    <form onSubmit={props.handleAddProductToShoppingList(name, count, e)}>
+    <form
+      onSubmit={
+        !props.statusOpenEditProduct
+          ? (e) => props.handleAddProductToShoppingList(name, count, e)
+          : props.handleEditProductList
+      }
+    >
       <div>
         <label htmlFor="nameProduct">name of product in shopping list</label>
         <input
@@ -30,7 +40,7 @@ const AddProduct = (props) => {
 
         <input
           type="submit"
-          value="add"
+          value={!props.statusOpenEditProduct ? "add" : "edit"}
           disabled={!name || !count ? true : false}
         />
       </div>
