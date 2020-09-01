@@ -35,6 +35,8 @@ class RouteSections extends Component {
     shoppingList: [],
     statusOpenEditProduct: false,
     idEditProduct: "",
+
+    chooseDayToSetDishes: "",
   };
 
   // structure settings
@@ -285,6 +287,14 @@ class RouteSections extends Component {
     });
   };
 
+  // plan meals
+
+  handleOpenPlanForDay = (e) => {
+    this.setState({
+      chooseDayToSetDishes: e.target.innerHTML,
+    });
+  };
+
   // clear
 
   handleClearValues = () => {
@@ -309,6 +319,8 @@ class RouteSections extends Component {
       shoppingList,
       statusOpenEditProduct,
       idEditProduct,
+      chooseDayToSetDishes,
+      daysSet,
     } = this.state;
 
     return (
@@ -342,7 +354,14 @@ class RouteSections extends Component {
           <Route
             path="/plan-meals"
             render={() => {
-              return <PlanMeals />;
+              return (
+                <PlanMeals
+                  daysSet={daysSet}
+                  handleOpenPlanForDay={this.handleOpenPlanForDay}
+                  chooseDayToSetDishes={chooseDayToSetDishes}
+                  shoppingList={shoppingList}
+                />
+              );
             }}
           />
 
