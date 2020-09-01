@@ -37,6 +37,7 @@ class RouteSections extends Component {
     idEditProduct: "",
 
     chooseDayToSetDishes: "",
+    chooseMealToSet: "",
   };
 
   // structure settings
@@ -295,6 +296,14 @@ class RouteSections extends Component {
     });
   };
 
+  // set dishes
+
+  handleChooseMealToSet = (e) => {
+    this.setState({
+      chooseMealToSet: e.target.innerHTML,
+    });
+  };
+
   // clear
 
   handleClearValues = () => {
@@ -309,18 +318,26 @@ class RouteSections extends Component {
     });
   };
 
+  handleClearStatusSetDishes = () => {
+    this.setState({
+      chooseDayToSetDishes: "",
+      chooseMealToSet: "",
+    });
+  };
+
   render() {
     const {
       statusSetStructureSettings,
-      infoDish,
       mealsSet,
+      daysSet,
+      infoDish,
       listDishes,
       infoProduct,
       shoppingList,
       statusOpenEditProduct,
       idEditProduct,
       chooseDayToSetDishes,
-      daysSet,
+      chooseMealToSet,
     } = this.state;
 
     return (
@@ -368,7 +385,15 @@ class RouteSections extends Component {
           <Route
             path="/set-dishes-for-day"
             render={() => {
-              return <SetDishesForDay />;
+              return (
+                <SetDishesForDay
+                  mealsSet={mealsSet}
+                  chooseDayToSetDishes={chooseDayToSetDishes}
+                  handleChooseMealToSet={this.handleChooseMealToSet}
+                  chooseMealToSet={chooseMealToSet}
+                  handleClearStatusSetDishes={this.handleClearStatusSetDishes}
+                />
+              );
             }}
           />
 

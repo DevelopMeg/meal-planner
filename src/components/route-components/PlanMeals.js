@@ -1,8 +1,15 @@
 import React from "react";
 import Menu from "../subcomponents/Menu";
 import DaysOfWeek from "../subcomponents/PlanMealsComponents/DaysOfWeek";
+import { useHistory } from "react-router-dom";
 
 const PlanMeals = (props) => {
+  const history = useHistory();
+
+  const handleOpenSetDish = () => {
+    history.push(`/set-dishes-for-day/${props.chooseDayToSetDishes}`);
+  };
+
   return (
     <>
       <Menu shoppingListLength={props.shoppingList.length} />
@@ -15,7 +22,9 @@ const PlanMeals = (props) => {
       ) : null}
 
       {props.chooseDayToSetDishes ? (
-        <button>{`set dishes for ${props.chooseDayToSetDishes}`}</button>
+        <button onClick={handleOpenSetDish}>
+          {`set dishes for ${props.chooseDayToSetDishes}`}
+        </button>
       ) : null}
     </>
   );
