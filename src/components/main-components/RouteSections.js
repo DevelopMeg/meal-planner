@@ -38,6 +38,12 @@ class RouteSections extends Component {
 
     chooseDayToSetDishes: "",
     chooseMealToSet: "",
+    chooseOptionSetDish: "",
+    valueSearchSetDishes: "",
+
+    arrSearchDishesToSetDish: [],
+    statusSearchDishesByCategory: false,
+    statusSearchDishesByName: false,
   };
 
   // structure settings
@@ -47,6 +53,17 @@ class RouteSections extends Component {
       daysSet: days,
       mealsSet: meals,
       statusSetStructureSettings: true,
+    });
+  };
+
+  // general change value
+
+  handleChangeValue = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    this.setState({
+      [name]: value,
     });
   };
 
@@ -304,6 +321,58 @@ class RouteSections extends Component {
     });
   };
 
+  handleChooseOptionSetDish = (e) => {
+    const name = e.target.name;
+
+    if (name === "searchNameDish") {
+      this.setState({
+        arrSearchDishesToSetDish: [],
+        statusSearchDishesByCategory: false,
+      });
+    }
+
+    this.setState({
+      chooseOptionSetDish: name,
+    });
+  };
+
+  handleSearchDish = (e) => {
+    e.preventDefault();
+
+    const { listDishes, valueSearchSetDishes, chooseMealToSet } = this.state;
+
+    let arrSearchDishesToSetDish = [...this.state.arrSearchDishesToSetDish];
+
+    if (e.target.name === "searchNameDish") {
+      arrSearchDishesToSetDish = listDishes.filter((dish) => {
+        return (
+          dish.categoryDish === chooseMealToSet &&
+          dish.nameDish.includes(valueSearchSetDishes)
+        );
+      });
+
+      this.setState({
+        statusSearchDishesByName: true,
+      });
+    }
+
+    if (e.target.name === "chooseDish") {
+      arrSearchDishesToSetDish = listDishes.filter((dish) => {
+        return dish.categoryDish === chooseMealToSet;
+      });
+
+      this.setState({
+        statusSearchDishesByName: false,
+        statusSearchDishesByCategory: true,
+      });
+    }
+
+    this.setState({
+      arrSearchDishesToSetDish,
+      valueSearchSetDishes: "",
+    });
+  };
+
   // clear
 
   handleClearValues = () => {
@@ -325,6 +394,16 @@ class RouteSections extends Component {
     });
   };
 
+  handleClearSetSettings = () => {
+    this.setState({
+      chooseOptionSetDish: "",
+      arrSearchDishesToSetDish: [],
+      statusSearchDishesByCategory: false,
+      statusSearchDishesByName: false,
+      chooseMealToSet: "",
+    });
+  };
+
   render() {
     const {
       statusSetStructureSettings,
@@ -338,6 +417,11 @@ class RouteSections extends Component {
       idEditProduct,
       chooseDayToSetDishes,
       chooseMealToSet,
+      chooseOptionSetDish,
+      valueSearchSetDishes,
+      arrSearchDishesToSetDish,
+      statusSearchDishesByCategory,
+      statusSearchDishesByName,
     } = this.state;
 
     return (
@@ -400,7 +484,21 @@ class RouteSections extends Component {
           <Route
             path="/set-dish-for-day"
             render={() => {
-              return <SetDishForDay />;
+              return (
+                <SetDishForDay
+                  chooseDayToSetDishes={chooseDayToSetDishes}
+                  handleClearSetSettings={this.handleClearSetSettings}
+                  chooseMealToSet={chooseMealToSet}
+                  chooseOptionSetDish={chooseOptionSetDish}
+                  handleChooseOptionSetDish={this.handleChooseOptionSetDish}
+                  handleSearchDish={this.handleSearchDish}
+                  valueSearchSetDishes={valueSearchSetDishes}
+                  handleChangeValue={this.handleChangeValue}
+                  arrSearchDishesToSetDish={arrSearchDishesToSetDish}
+                  statusSearchDishesByCategory={statusSearchDishesByCategory}
+                  statusSearchDishesByName={statusSearchDishesByName}
+                />
+              );
             }}
           />
 
