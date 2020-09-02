@@ -44,6 +44,8 @@ class RouteSections extends Component {
     arrSearchDishesToSetDish: [],
     statusSearchDishesByCategory: false,
     statusSearchDishesByName: false,
+
+    setDishes: [],
   };
 
   // structure settings
@@ -373,6 +375,57 @@ class RouteSections extends Component {
     });
   };
 
+  handleAddDishToMealForDay = (idAddDish) => {
+    const setDishes = [...this.state.setDishes];
+    const { chooseDayToSetDishes } = this.state;
+
+    const setDish = this.state.arrSearchDishesToSetDish.filter((dish) => {
+      return dish.id === idAddDish;
+    });
+
+    setDish.forEach((item) => {
+      item.addedDish = true;
+
+      if (setDishes.length === 0) {
+        item.setForDay = chooseDayToSetDishes;
+
+        setDishes.push(item);
+      } else {
+        setDishes.forEach((setDish) => {
+          if (setDish.id !== item.id && item.setForDay === "") {
+            item.setForDay = chooseDayToSetDishes;
+
+            setDishes.push(item);
+          } else if (setDish.id === item.id) {
+            let arrSetForDay;
+
+            if (typeof item.setForDay === "string") {
+              arrSetForDay = item.setForDay.split(",");
+
+              arrSetForDay.push(chooseDayToSetDishes);
+              item.setForDay = arrSetForDay;
+            } else {
+              const presentDay = item.setForDay.findIndex((day) => {
+                return day === chooseDayToSetDishes;
+              });
+
+              if (presentDay === -1) {
+                arrSetForDay = item.setForDay;
+
+                arrSetForDay.push(chooseDayToSetDishes);
+                item.setForDay = arrSetForDay;
+              }
+            }
+          }
+        });
+      }
+    });
+
+    this.setState({
+      setDishes,
+    });
+  };
+
   // clear
 
   handleClearValues = () => {
@@ -497,6 +550,7 @@ class RouteSections extends Component {
                   arrSearchDishesToSetDish={arrSearchDishesToSetDish}
                   statusSearchDishesByCategory={statusSearchDishesByCategory}
                   statusSearchDishesByName={statusSearchDishesByName}
+                  handleAddDishToMealForDay={this.handleAddDishToMealForDay}
                 />
               );
             }}

@@ -1,4 +1,5 @@
 import React from "react";
+import ListSearchDishes from "../subcomponents/SetDishForDayComponents/ListSearchDishes";
 import SearchSetDishes from "../subcomponents/SetDishForDayComponents/SearchSetDishes";
 import { useHistory } from "react-router-dom";
 
@@ -8,6 +9,23 @@ const SetDishForDay = (props) => {
   const handleComeBack = () => {
     history.push(`/set-dishes-for-day/${props.chooseDayToSetDishes}`);
   };
+
+  let dishesToSetDish;
+
+  if (props.arrSearchDishesToSetDish.length !== 0) {
+    dishesToSetDish = props.arrSearchDishesToSetDish.map((dish, id) => {
+      return (
+        <ListSearchDishes
+          key={id}
+          dish={dish}
+          handleClearSetSettings={props.handleClearSetSettings}
+          handleAddDishToMealForDay={props.handleAddDishToMealForDay}
+          chooseDayToSetDishes={props.chooseDayToSetDishes}
+          arrSearchDishesToSetDish={props.arrSearchDishesToSetDish}
+        />
+      );
+    });
+  }
 
   return (
     <>
@@ -30,6 +48,7 @@ const SetDishForDay = (props) => {
         handleChangeValue={props.handleChangeValue}
         chooseOptionSetDish={props.chooseOptionSetDish}
         arrSearchDishesToSetDish={props.arrSearchDishesToSetDish}
+        dishesToSetDish={dishesToSetDish}
       />
     </>
   );

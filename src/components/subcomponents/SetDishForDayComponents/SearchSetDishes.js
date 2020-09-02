@@ -31,12 +31,21 @@ const SearchSetDishes = (props) => {
             <button name="searchNameDish">search</button>
           </form>
 
+          {props.arrSearchDishesToSetDish.length !== 0 ? (
+            <section>{props.dishesToSetDish}</section>
+          ) : null}
+
           {props.chooseOptionSetDish === "searchNameDish" &&
           props.arrSearchDishesToSetDish.length === 0 &&
           props.statusSearchDishesByName ? (
             <p>Unfortunately there is no such name for the dish</p>
           ) : null}
         </section>
+      ) : null}
+
+      {props.chooseOptionSetDish === "chooseDish" &&
+      props.arrSearchDishesToSetDish.length !== 0 ? (
+        <section>{props.dishesToSetDish}</section>
       ) : null}
 
       {props.chooseOptionSetDish === "chooseDish" &&
