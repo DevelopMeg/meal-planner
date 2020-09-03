@@ -26,6 +26,18 @@ const PlanMeals = (props) => {
           {`set dishes for ${props.chooseDayToSetDishes}`}
         </button>
       ) : null}
+
+      {props.mealsSet && props.chooseDayToSetDishes ? (
+        <MealsForDay
+          mealsSet={props.mealsSet}
+          setDishes={props.setDishes}
+          chooseDayToSetDishes={props.chooseDayToSetDishes}
+          shoppingList={props.shoppingList}
+          handleAddIngredientToShoppingList={
+            props.handleAddIngredientToShoppingList
+          }
+        />
+      ) : null}
     </>
   );
 };

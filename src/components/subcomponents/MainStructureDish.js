@@ -10,7 +10,7 @@ const MainStructureDish = (props) => {
         {props.name === "plan-meals" ? (
           <button
             onClick={() => {
-              props.handleAddIngredientToList(
+              props.handleAddIngredientToShoppingList(
                 props.dish.nameDish,
                 ingredient.name,
                 ingredient.id

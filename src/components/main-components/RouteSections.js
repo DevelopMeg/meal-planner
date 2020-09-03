@@ -316,6 +316,27 @@ class RouteSections extends Component {
     });
   };
 
+  handleAddIngredientToShoppingList = (
+    nameDish,
+    ingredientName,
+    idIngredient
+  ) => {
+    const shoppingList = [...this.state.shoppingList];
+
+    const ingredient = {
+      name: `${ingredientName} for ${nameDish}`,
+      id: idIngredient,
+      count: 1,
+      added: true,
+    };
+
+    shoppingList.push(ingredient);
+
+    this.setState({
+      shoppingList,
+    });
+  };
+
   // set dishes
 
   handleChooseMealToSet = (e) => {
@@ -558,6 +579,7 @@ class RouteSections extends Component {
       arrSearchDishesToSetDish,
       statusSearchDishesByCategory,
       statusSearchDishesByName,
+      setDishes,
       setDishesInMealOfDay,
     } = this.state;
 
@@ -595,9 +617,14 @@ class RouteSections extends Component {
               return (
                 <PlanMeals
                   daysSet={daysSet}
+                  mealsSet={mealsSet}
+                  setDishes={setDishes}
                   handleOpenPlanForDay={this.handleOpenPlanForDay}
                   chooseDayToSetDishes={chooseDayToSetDishes}
                   shoppingList={shoppingList}
+                  handleAddIngredientToShoppingList={
+                    this.handleAddIngredientToShoppingList
+                  }
                 />
               );
             }}
