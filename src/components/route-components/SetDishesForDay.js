@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import MealsOfWeek from "../subcomponents/SetDishesForDayComponents/MealsOfWeek";
+import AlreadySetDishes from "../subcomponents/SetDishesForDayComponents/AlreadySetDishes";
 
 const SetDishesForDay = (props) => {
   const history = useHistory();
@@ -23,19 +24,26 @@ const SetDishesForDay = (props) => {
       >
         come back
       </button>
-
       {props.mealsSet ? (
         <MealsOfWeek
           mealsSet={props.mealsSet}
           handleChooseMealToSet={props.handleChooseMealToSet}
+          handleShowDishes={props.handleShowDishes}
           chooseDayToSetDishes={props.chooseDayToSetDishes}
         />
       ) : null}
-
       {props.chooseMealToSet ? (
         <button onClick={handleOpenSetDish}>
           set dishes for {props.chooseMealToSet}
         </button>
+      ) : null}
+      {props.chooseMealToSet ? (
+        <AlreadySetDishes
+          setDishesInMealOfDay={props.setDishesInMealOfDay}
+          chooseMealToSet={props.chooseMealToSet}
+          chooseDayToSetDishes={props.chooseDayToSetDishes}
+          handleDeleteDishOfSetList={props.handleDeleteDishOfSetList}
+        />
       ) : null}
     </>
   );

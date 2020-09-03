@@ -46,6 +46,7 @@ class RouteSections extends Component {
     statusSearchDishesByName: false,
 
     setDishes: [],
+    setDishesInMealOfDay: [],
   };
 
   // structure settings
@@ -426,6 +427,88 @@ class RouteSections extends Component {
     });
   };
 
+  handleShowDishes = (e) => {
+    const setDishes = [...this.state.setDishes];
+    const chooseMeal = e.target.innerHTML;
+    let setDishesInMealOfDay = [...this.state.setDishesInMealOfDay];
+    const { chooseDayToSetDishes } = this.state;
+
+    if (setDishesInMealOfDay.length !== 0) {
+      this.setState({
+        setDishesInMealOfDay: [],
+      });
+    }
+
+    this.state.mealsSet.forEach((categoryMeal) => {
+      if (chooseMeal === categoryMeal) {
+        const dishesSetInChooseMeals = setDishes.filter((dish) => {
+          return dish.categoryDish === categoryMeal;
+        });
+
+        if (dishesSetInChooseMeals.length !== 0) {
+          setDishesInMealOfDay = dishesSetInChooseMeals.filter((dish) => {
+            if (typeof dish.setForDay !== "string") {
+              const result = dish.setForDay.filter((day) => {
+                return day === chooseDayToSetDishes;
+              });
+
+              return result.length !== 0;
+            } else {
+              return dish.setForDay === chooseDayToSetDishes;
+            }
+          });
+        } else {
+          setDishesInMealOfDay = [];
+        }
+      }
+    });
+
+    this.setState({
+      setDishesInMealOfDay,
+    });
+  };
+
+  handleDeleteDishOfSetList = (e) => {
+    const setDishesInMealOfDay = [...this.state.setDishesInMealOfDay];
+    const setDishes = [...this.state.setDishes];
+    const idDish = e.target.parentNode.id;
+
+    const idDayDish = setDishes.findIndex((dish) => {
+      return idDish === dish.id;
+    });
+
+    if (idDayDish !== -1) {
+      const dayDish = setDishes[idDayDish].setForDay;
+
+      if (typeof dayDish !== "string") {
+        if (dayDish.length !== 1) {
+          const idDayInArrToDelete = dayDish.findIndex((day) => {
+            return day === this.state.chooseDayToSetDishes;
+          });
+
+          dayDish.splice(idDayInArrToDelete, 1);
+        } else {
+          setDishes.splice(idDayDish, 1);
+        }
+      } else {
+        setDishes.splice(idDayDish, 1);
+      }
+    }
+
+    const idDishToDeleteCurrentSetDishes = setDishesInMealOfDay.findIndex(
+      (dish) => {
+        return idDish === dish.id;
+      }
+    );
+
+    setDishesInMealOfDay.splice(idDishToDeleteCurrentSetDishes, 1);
+
+    this.setState({
+      setDishes,
+      setDishesInMealOfDay,
+    });
+  };
+
   // clear
 
   handleClearValues = () => {
@@ -475,6 +558,7 @@ class RouteSections extends Component {
       arrSearchDishesToSetDish,
       statusSearchDishesByCategory,
       statusSearchDishesByName,
+      setDishesInMealOfDay,
     } = this.state;
 
     return (
@@ -529,6 +613,9 @@ class RouteSections extends Component {
                   handleChooseMealToSet={this.handleChooseMealToSet}
                   chooseMealToSet={chooseMealToSet}
                   handleClearStatusSetDishes={this.handleClearStatusSetDishes}
+                  handleShowDishes={this.handleShowDishes}
+                  setDishesInMealOfDay={setDishesInMealOfDay}
+                  handleDeleteDishOfSetList={this.handleDeleteDishOfSetList}
                 />
               );
             }}

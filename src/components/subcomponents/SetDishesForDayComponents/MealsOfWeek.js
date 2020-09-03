@@ -8,6 +8,7 @@ const MealsOfWeek = (props) => {
         key={id}
         onClick={(e) => {
           props.handleChooseMealToSet(e);
+          props.handleShowDishes(e);
         }}
       >
         <NavLink
