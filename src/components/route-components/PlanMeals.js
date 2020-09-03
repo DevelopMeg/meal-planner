@@ -1,6 +1,7 @@
 import React from "react";
 import Menu from "../subcomponents/Menu";
 import DaysOfWeek from "../subcomponents/PlanMealsComponents/DaysOfWeek";
+import MealsForDay from "../subcomponents/PlanMealsComponents/MealsForDay";
 import { useHistory } from "react-router-dom";
 
 const PlanMeals = (props) => {

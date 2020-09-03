@@ -4,6 +4,14 @@ const MainStructureDish = (props) => {
   const ingredientsList = props.dish.ingredients.map((ingredient, id) => {
     let added;
 
+    if (props.shoppingList !== undefined) {
+      props.shoppingList.forEach((product) => {
+        if (product.id === ingredient.id) {
+          added = product.added;
+        }
+      });
+    }
+
     return (
       <div key={id} id={ingredient.id}>
         <p>{ingredient.name}</p>

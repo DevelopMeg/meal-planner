@@ -1,5 +1,6 @@
 import React from "react";
 import MealForDay from "./MealForDay";
+import CountCalories from "./CountCalories";
 
 const MealsForDay = (props) => {
   const filterDishesForDay = props.setDishes.filter((setDish) => {
@@ -38,7 +39,13 @@ const MealsForDay = (props) => {
   return (
     <>
       {props.setDishes.length !== 0 && filterDishesForDay.length !== 0 ? (
-        <div>{meals}</div>
+        <div>
+          {meals}
+          <CountCalories
+            filterDishesForDay={filterDishesForDay}
+            chooseDayToSetDishes={props.chooseDayToSetDishes}
+          />
+        </div>
       ) : (
         <h4>{`Unfortunately your plan for ${props.chooseDayToSetDishes} is empty`}</h4>
       )}

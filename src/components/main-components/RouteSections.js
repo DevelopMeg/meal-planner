@@ -187,7 +187,7 @@ class RouteSections extends Component {
     debugger;
     const listDishes = [...this.state.listDishes];
 
-    const dishId = e.target.parentNode.parentNode.id;
+    const dishId = e.target.parentNode.id;
 
     const idEditDish = listDishes.findIndex((dish) => {
       return dishId === dish.id;
