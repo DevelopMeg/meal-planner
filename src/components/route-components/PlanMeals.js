@@ -13,7 +13,10 @@ const PlanMeals = (props) => {
 
   return (
     <>
-      <Menu shoppingListLength={props.shoppingList.length} />
+      <Menu
+        shoppingListLength={props.shoppingList.length}
+        handleClearOpenMenuItem={props.handleClearOpenMenuItem}
+      />
 
       {props.daysSet ? (
         <DaysOfWeek

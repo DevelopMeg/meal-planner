@@ -59,6 +59,16 @@ class RouteSections extends Component {
     });
   };
 
+  handleSaveNewStructureSetting = () => {
+    if (this.state.statusSetStructureSettings) {
+      this.setState({
+        listDishes: [],
+        shoppingList: [],
+        setDishes: [],
+      });
+    }
+  };
+
   // general change value
 
   handleChangeValue = (e) => {
@@ -546,8 +556,21 @@ class RouteSections extends Component {
 
   handleClearStatusSetDishes = () => {
     this.setState({
+      currentSetDishes: [],
       chooseDayToSetDishes: "",
       chooseMealToSet: "",
+    });
+  };
+
+  handleClearOpenMenuItem = () => {
+    this.setState({
+      chooseDayToSetDishes: "",
+      infoProduct: {
+        id: "",
+        name: "",
+        count: "",
+      },
+      statusOpenEditProduct: false,
     });
   };
 
@@ -592,6 +615,9 @@ class RouteSections extends Component {
               return (
                 <StructureSettings
                   handleSaveStructureSetting={this.handleSaveStructureSetting}
+                  handleSaveNewStructureSetting={
+                    this.handleSaveNewStructureSetting
+                  }
                   statusSetStructureSettings={statusSetStructureSettings}
                   shoppingListLength={shoppingList.length}
                 />
@@ -625,6 +651,7 @@ class RouteSections extends Component {
                   handleAddIngredientToShoppingList={
                     this.handleAddIngredientToShoppingList
                   }
+                  handleClearOpenMenuItem={this.handleClearOpenMenuItem}
                 />
               );
             }}
@@ -686,6 +713,7 @@ class RouteSections extends Component {
                   handleEditProductList={this.handleEditProductList}
                   handleOpenEditProductList={this.handleOpenEditProductList}
                   handleDeleteProductList={this.handleDeleteProductList}
+                  handleClearOpenMenuItem={this.handleClearOpenMenuItem}
                 />
               );
             }}

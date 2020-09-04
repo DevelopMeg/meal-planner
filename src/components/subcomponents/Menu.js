@@ -11,7 +11,11 @@ const Menu = (props) => {
 
   const menuItem = menuTxt.map((item, id) => {
     return (
-      <li key={id} className="menu__item">
+      <li
+        key={id}
+        className="menu__item"
+        onClick={props.handleClearOpenMenuItem}
+      >
         <NavLink to={item.path} className="menu__link">
           {item.text}
         </NavLink>

@@ -217,7 +217,13 @@ class StructureSettings extends Component {
     return (
       <>
         {this.props.statusSetStructureSettings ? (
-          <Menu shoppingListLength={this.props.shoppingListLength} />
+          <>
+            <Menu shoppingListLength={this.props.shoppingListLength} />
+            <h4>
+              Warning! If you save new structure setting, you delete previous
+              added information: plan meals, shopping list, list dishes!
+            </h4>
+          </>
         ) : (
           "Please at the first, set planner structure"
         )}
@@ -260,6 +266,7 @@ class StructureSettings extends Component {
           <button
             onClick={() => {
               this.props.handleSaveStructureSetting(daysSetting, mealsSetting);
+              this.props.handleSaveNewStructureSetting();
               this.handleRedirect();
             }}
             disabled={
