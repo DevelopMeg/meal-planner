@@ -11,12 +11,22 @@ const PlanMeals = (props) => {
     history.push(`/set-dishes-for-day/${props.chooseDayToSetDishes}`);
   };
 
+  const date = new Date();
+  const currentDay = date.toDateString();
+
   return (
     <>
       <Menu
         shoppingListLength={props.shoppingList.length}
         handleClearOpenMenuItem={props.handleClearOpenMenuItem}
       />
+
+      <div>
+        <h4>Today: {currentDay}</h4>
+        <button onClick={props.handleClearSetPlanMeals}>
+          clear plan meals
+        </button>
+      </div>
 
       {props.daysSet ? (
         <DaysOfWeek
@@ -25,23 +35,25 @@ const PlanMeals = (props) => {
         />
       ) : null}
 
-      {props.chooseDayToSetDishes ? (
-        <button onClick={handleOpenSetDish}>
-          {`set dishes for ${props.chooseDayToSetDishes}`}
-        </button>
-      ) : null}
+      {props.chooseDayToSetDishes && (
+        <section>
+          <button onClick={handleOpenSetDish}>
+            {`set dishes for ${props.chooseDayToSetDishes}`}
+          </button>
 
-      {props.mealsSet && props.chooseDayToSetDishes ? (
-        <MealsForDay
-          mealsSet={props.mealsSet}
-          setDishes={props.setDishes}
-          chooseDayToSetDishes={props.chooseDayToSetDishes}
-          shoppingList={props.shoppingList}
-          handleAddIngredientToShoppingList={
-            props.handleAddIngredientToShoppingList
-          }
-        />
-      ) : null}
+          {props.mealsSet && (
+            <MealsForDay
+              mealsSet={props.mealsSet}
+              setDishes={props.setDishes}
+              chooseDayToSetDishes={props.chooseDayToSetDishes}
+              shoppingList={props.shoppingList}
+              handleAddIngredientToShoppingList={
+                props.handleAddIngredientToShoppingList
+              }
+            />
+          )}
+        </section>
+      )}
     </>
   );
 };

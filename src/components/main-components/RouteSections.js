@@ -10,6 +10,8 @@ import ListDishes from "../route-components/ListDishes";
 import AddDish from "../route-components/AddDish";
 import EditDish from "../route-components/EditDish";
 import NoPage from "../route-components/NoPage";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 class RouteSections extends Component {
   state = {
@@ -559,6 +561,7 @@ class RouteSections extends Component {
       currentSetDishes: [],
       chooseDayToSetDishes: "",
       chooseMealToSet: "",
+      setDishesInMealOfDay: [],
     });
   };
 
@@ -581,6 +584,25 @@ class RouteSections extends Component {
       statusSearchDishesByCategory: false,
       statusSearchDishesByName: false,
       chooseMealToSet: "",
+    });
+  };
+
+  handleClearSetPlanMeals = () => {
+    confirmAlert({
+      message: "Are you sure, that you clear all set meals?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            this.setState({
+              setDishes: [],
+            });
+          },
+        },
+        {
+          label: "No",
+        },
+      ],
     });
   };
 
@@ -652,6 +674,7 @@ class RouteSections extends Component {
                     this.handleAddIngredientToShoppingList
                   }
                   handleClearOpenMenuItem={this.handleClearOpenMenuItem}
+                  handleClearSetPlanMeals={this.handleClearSetPlanMeals}
                 />
               );
             }}
