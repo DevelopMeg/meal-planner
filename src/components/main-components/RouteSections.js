@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import StructureSettings from "../route-components/StructureSettings";
 import HomePage from "../route-components/HomePage";
 import PlanMeals from "../route-components/PlanMeals";
@@ -50,6 +50,77 @@ class RouteSections extends Component {
     setDishes: [],
     setDishesInMealOfDay: [],
   };
+
+  // local storage
+
+  componentDidMount() {
+    localStorage.getItem("daysSet") &&
+      this.setState({
+        daysSet: JSON.parse(localStorage.getItem("daysSet")),
+      });
+
+    localStorage.getItem("mealsSet") &&
+      this.setState({
+        mealsSet: JSON.parse(localStorage.getItem("mealsSet")),
+      });
+
+    localStorage.getItem("statusSetStructureSettings") &&
+      this.setState({
+        statusSetStructureSettings: JSON.parse(
+          localStorage.getItem("statusSetStructureSettings")
+        ),
+      });
+
+    localStorage.getItem("listDishes") &&
+      this.setState({
+        listDishes: JSON.parse(localStorage.getItem("listDishes")),
+      });
+
+    localStorage.getItem("shoppingList") &&
+      this.setState({
+        shoppingList: JSON.parse(localStorage.getItem("shoppingList")),
+      });
+
+    localStorage.getItem("setDishes") &&
+      this.setState({
+        setDishes: JSON.parse(localStorage.getItem("setDishes")),
+      });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.daysSet !== this.state.daysSet) {
+      localStorage.setItem("daysSet", JSON.stringify(this.state.daysSet));
+    }
+
+    if (prevState.mealsSet !== this.state.mealsSet) {
+      localStorage.setItem("mealsSet", JSON.stringify(this.state.mealsSet));
+    }
+
+    if (
+      prevState.statusSetStructureSettings !==
+      this.state.statusSetStructureSettings
+    ) {
+      localStorage.setItem(
+        "statusSetStructureSettings",
+        JSON.stringify(this.state.statusSetStructureSettings)
+      );
+    }
+
+    if (prevState.listDishes !== this.state.listDishes) {
+      localStorage.setItem("listDishes", JSON.stringify(this.state.listDishes));
+    }
+
+    if (prevState.shoppingList !== this.state.shoppingList) {
+      localStorage.setItem(
+        "shoppingList",
+        JSON.stringify(this.state.shoppingList)
+      );
+    }
+
+    if (prevState.setDishes !== this.state.setDishes) {
+      localStorage.setItem("setDishes", JSON.stringify(this.state.setDishes));
+    }
+  }
 
   // structure settings
 
@@ -290,7 +361,7 @@ class RouteSections extends Component {
   handleDeleteProductList = (e) => {
     const shoppingList = [...this.state.shoppingList];
 
-    const parentId = e.target.parentNode.parentNode.id;
+    const parentId = e.target.parentNode.id;
 
     const idDeleteItem = shoppingList.findIndex((item) => {
       return item.id === parentId;
@@ -654,7 +725,14 @@ class RouteSections extends Component {
               return statusSetStructureSettings ? (
                 <HomePage shoppingListLength={shoppingList.length} />
               ) : (
-                <Redirect to="/structure-settings" />
+                <StructureSettings
+                  handleSaveStructureSetting={this.handleSaveStructureSetting}
+                  handleSaveNewStructureSetting={
+                    this.handleSaveNewStructureSetting
+                  }
+                  statusSetStructureSettings={statusSetStructureSettings}
+                  shoppingListLength={shoppingList.length}
+                />
               );
             }}
           />
