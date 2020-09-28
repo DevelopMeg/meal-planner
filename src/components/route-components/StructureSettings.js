@@ -4,23 +4,23 @@ import Menu from "../subcomponents/Menu";
 
 class StructureSettings extends Component {
   state = {
-    allDaysForPlan: { value: "all (7)", isChecked: false },
+    allDaysForPlan: { value: "All (7)", isChecked: false },
     daysForPlan: [
-      { value: "monday", isChecked: false },
-      { value: "tuesday", isChecked: false },
-      { value: "wednesday", isChecked: false },
-      { value: "thursday", isChecked: false },
-      { value: "friday", isChecked: false },
-      { value: "saturday", isChecked: false },
-      { value: "sunday", isChecked: false },
+      { value: "Monday", isChecked: false },
+      { value: "Tuesday", isChecked: false },
+      { value: "Wednesday", isChecked: false },
+      { value: "Thursday", isChecked: false },
+      { value: "Friday", isChecked: false },
+      { value: "Saturday", isChecked: false },
+      { value: "Sunday", isChecked: false },
     ],
-    allMealsForPlan: { value: "all (5)", isChecked: false },
+    allMealsForPlan: { value: "All (5)", isChecked: false },
     mealsForPlan: [
-      { value: "breakfast", isChecked: false },
-      { value: "lunch", isChecked: false },
-      { value: "dinner", isChecked: false },
-      { value: "dessert", isChecked: false },
-      { value: "supper", isChecked: false },
+      { value: "Breakfast", isChecked: false },
+      { value: "Lunch", isChecked: false },
+      { value: "Dinner", isChecked: false },
+      { value: "Dessert", isChecked: false },
+      { value: "Supper", isChecked: false },
     ],
     daysSetting: [],
     mealsSetting: [],
@@ -166,7 +166,7 @@ class StructureSettings extends Component {
 
     const inputsDays = daysForPlan.map((item, id) => {
       return (
-        <div key={id}>
+        <div key={id} className="option-item">
           <input
             id={item.value}
             type="checkbox"
@@ -174,12 +174,14 @@ class StructureSettings extends Component {
             checked={item.isChecked}
             onChange={this.handleChangeCheckedItem}
             disabled={allDaysForPlan.isChecked ? true : false}
+            className="option-item__checkbox"
           />
           <label
             htmlFor={item.value}
             style={
               allDaysForPlan.isChecked ? { color: "#ddd" } : { color: "#000" }
             }
+            className="option-item__name"
           >
             {item.value}
           </label>
@@ -189,7 +191,7 @@ class StructureSettings extends Component {
 
     const inputsMeals = mealsForPlan.map((item, id) => {
       return (
-        <div key={id}>
+        <div key={id} className="option-item">
           <input
             id={item.value}
             type="checkbox"
@@ -197,12 +199,14 @@ class StructureSettings extends Component {
             checked={item.isChecked}
             onChange={this.handleChangeCheckedItem}
             disabled={allMealsForPlan.isChecked ? true : false}
+            className="option-item__checkbox"
           />
           <label
             htmlFor={item.value}
             style={
               allMealsForPlan.isChecked ? { color: "#ddd" } : { color: "#000" }
             }
+            className="option-item__name"
           >
             {item.value}
           </label>
@@ -217,50 +221,77 @@ class StructureSettings extends Component {
     return (
       <>
         {this.props.statusSetStructureSettings ? (
-          <>
-            <Menu shoppingListLength={this.props.shoppingListLength} />
-            <h4>
-              Warning! If you save new structure setting, you delete previous
-              added information: plan meals, shopping list, list dishes!
+          <Menu shoppingListLength={this.props.shoppingListLength} />
+        ) : null}
+        <section
+          className={
+            this.props.statusSetStructureSettings
+              ? "section-settings section-settings--warning"
+              : "section-settings"
+          }
+        >
+          {this.props.statusSetStructureSettings ? (
+            <h4 className="section-settings__info section-settings__info--warning">
+              <span style={{ color: "#ff0000" }}>Warning!</span> If you save new
+              structure setting, you delete previous added information: plan
+              meals, shopping list, list dishes!
             </h4>
-          </>
-        ) : (
-          "Please at the first, set planner structure"
-        )}
+          ) : (
+            <h4 className="section-settings__info">
+              Please at the first, set planner structure
+            </h4>
+          )}
 
-        <section>
-          <section>
-            <h3>Please, choose days of week, which you want plan:</h3>
-            <div>
-              <input
-                id={allDaysForPlan.value}
-                type="checkbox"
-                checked={allDaysForPlan.isChecked}
-                onChange={this.handleChangeAllCheckedDays}
-              />
-              <label htmlFor={allDaysForPlan.value}>
-                {allDaysForPlan.value}
-              </label>
+          <section className="setting-option">
+            <h3 className="setting-option__title">
+              Choose days of week, which you want plan:
+            </h3>
+
+            <div className="option-items">
+              <div className="option-item">
+                <input
+                  id={allDaysForPlan.value}
+                  type="checkbox"
+                  checked={allDaysForPlan.isChecked}
+                  onChange={this.handleChangeAllCheckedDays}
+                  className="option-item__checkbox"
+                />
+                <label
+                  htmlFor={allDaysForPlan.value}
+                  className="option-item__name"
+                >
+                  {allDaysForPlan.value}
+                </label>
+              </div>
+
+              {inputsDays}
             </div>
-
-            {inputsDays}
           </section>
 
-          <section>
-            <h3>Please, choose meals, which you want plan:</h3>
-            <div>
-              <input
-                id={allMealsForPlan.value}
-                type="checkbox"
-                checked={allMealsForPlan.isChecked}
-                onChange={this.handleChangeAllCheckedMeals}
-              />
-              <label htmlFor={allMealsForPlan.value}>
-                {allMealsForPlan.value}
-              </label>
-            </div>
+          <section className="setting-option">
+            <h3 className="setting-option__title">
+              Choose meals, which you want plan:
+            </h3>
 
-            {inputsMeals}
+            <div className="option-items">
+              <div className="option-item">
+                <input
+                  id={allMealsForPlan.value}
+                  type="checkbox"
+                  checked={allMealsForPlan.isChecked}
+                  onChange={this.handleChangeAllCheckedMeals}
+                  className="option-item__checkbox"
+                />
+                <label
+                  htmlFor={allMealsForPlan.value}
+                  className="option-item__name"
+                >
+                  {allMealsForPlan.value}
+                </label>
+              </div>
+
+              {inputsMeals}
+            </div>
           </section>
 
           <button
@@ -274,6 +305,7 @@ class StructureSettings extends Component {
                 ? true
                 : false
             }
+            className="section-settings__save-btn"
           >
             save
           </button>

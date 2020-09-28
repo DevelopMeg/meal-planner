@@ -1,0 +1,190 @@
+.section-settings {
+  width: 90%;
+  margin: 10px auto 20px;
+  padding: 20px 10px;
+  background-color: #f1f1f1;
+  border-radius: 20px;
+
+  &__info {
+    margin: 0;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  &__save-btn {
+    margin: 40px auto 0;
+    padding: 6px 0;
+    width: 70%;
+    display: block;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    background-color: #ffd324;
+    border: 2px solid #f1d463;
+    border-radius: 4px;
+    color: #615423;
+
+    &:disabled {
+      border-color: #dad6c5;
+      background-color: #dad6c5;
+      color: #989898;
+    }
+  }
+
+  &--warning {
+    margin: 25px auto;
+  }
+}
+
+.setting-option {
+  margin-top: 25px;
+
+  &__title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
+
+.option-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.option-item {
+  flex-basis: 44%;
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+
+  &__checkbox {
+    width: 24px;
+    height: 24px;
+  }
+
+  &__name {
+    margin-left: 14px;
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 360px) {
+  .section-settings {
+    margin: 0 auto;
+    padding: 20px 18px;
+
+    &--warning {
+      margin: 25px auto;
+    }
+  }
+
+  .setting-option__title,
+  .option-item__name {
+    font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 480px) {
+  .section-settings {
+    width: 85%;
+    padding: 20px;
+
+    &__info {
+      font-size: 1.8rem;
+    }
+  }
+
+  .setting-option {
+    margin-top: 35px;
+
+    &__title {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-settings {
+    width: 80%;
+    padding: 35px 40px;
+
+    &__info {
+      font-size: 2.4rem;
+
+      &--warning {
+        font-size: 2rem;
+      }
+    }
+
+    &__save-btn {
+      margin-top: 50px;
+      padding: 10px 0;
+      width: 40%;
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+      cursor: pointer;
+
+      &:disabled {
+        cursor: default;
+      }
+    }
+
+    &--warning {
+      margin: 45px auto 30px;
+    }
+  }
+
+  .setting-option {
+    margin-top: 50px;
+
+    &__title {
+      font-size: 2.2rem;
+    }
+  }
+
+  .option-items {
+    margin-top: 25px;
+  }
+
+  .option-item {
+    margin: 8px 0;
+    flex-basis: 45%;
+
+    &__checkbox {
+      cursor: pointer;
+      width: 28px;
+      height: 28px;
+    }
+
+    &__name {
+      margin-left: 25px;
+      font-size: 2.4rem;
+    }
+  }
+}
+
+@media (min-width: 1366px) {
+  .section-settings {
+    width: 75%;
+
+    &__info {
+      &--warning {
+        margin-bottom: 60px;
+        font-size: 2.2rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 1900px) {
+  .section-settings {
+    width: 70%;
+
+    &__save-btn {
+      margin-top: 65px;
+      width: 35%;
+    }
+  }
+}
