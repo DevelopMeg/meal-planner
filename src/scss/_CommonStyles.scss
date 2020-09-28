@@ -1,0 +1,42 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 0.625rem;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.link {
+  text-decoration: none;
+  color: #000;
+}
+
+main {
+  min-height: 76vh;
+}
+
+@media(min-width: 1024px) {
+  main {
+    min-height: 78vh;
+  }
+}
+
+@media(min-width: 1300px) {
+  main {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media(min-width: 1810px) {
+  main {
+    width: 80%;
+  }
+}

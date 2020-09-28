@@ -1,0 +1,29 @@
+.footer {
+  height: 12vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.copyright {
+  &__text {
+    margin: 0;
+    font-size: 1.4rem;
+  }
+}
+
+@media(min-width: 400px) {
+  .copyright {
+    &__text {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+@media(min-width: 1024px) {
+  .footer {
+    height: 10vh;
+  }
+}

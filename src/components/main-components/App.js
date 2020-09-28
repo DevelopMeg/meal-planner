@@ -1,4 +1,6 @@
 import React from "react";
+import "../../scss/style.scss";
+
 import Header from "./Header";
 import RouteSections from "./RouteSections";
 import Footer from "./Footer";

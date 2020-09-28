@@ -1,0 +1,47 @@
+.head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 12vh;
+
+  &__title {
+    margin: 0 14px 0 0;
+    font-family: 'Jura', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 300;
+    font-size: 3.2rem;
+  }
+
+  &__image {
+    display: block;
+    height: 45px;
+  }
+}
+
+@media(min-width: 400px) {
+  .head {
+    &__title {
+      margin-right: 20px;
+      font-size: 3.4rem;
+
+    }
+
+    &__image {
+      height: 48px;
+    }
+  }
+}
+
+@media(min-width: 1024px) {
+  .head {
+    &__title {
+      margin-right: 25px;
+      font-size: 4rem;
+    }
+
+    &__image {
+      height: 64px;
+    }
+  }
+}
