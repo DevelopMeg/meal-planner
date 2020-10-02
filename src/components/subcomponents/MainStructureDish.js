@@ -13,10 +13,11 @@ const MainStructureDish = (props) => {
     }
 
     return (
-      <div key={id} id={ingredient.id}>
-        <p>{ingredient.name}</p>
+      <div key={id} id={ingredient.id} className="ingredient">
+        <p className="ingredient__name">{ingredient.name}</p>
         {props.name === "plan-meals" ? (
           <button
+            className="ingredient__add-to-list"
             onClick={() => {
               props.handleAddIngredientToShoppingList(
                 props.dish.nameDish,
@@ -26,8 +27,7 @@ const MainStructureDish = (props) => {
             }}
             disabled={added ? true : false}
           >
-            add to shopping list
-            <i className="fas fa-clipboard-list"></i>
+            <i className="ingredient__btn-icon fas fa-cart-plus"></i>
           </button>
         ) : null}
       </div>
@@ -36,11 +36,16 @@ const MainStructureDish = (props) => {
 
   return (
     <>
-      <p>Name of dish: {props.dish.nameDish}</p>
+      <p className="dish__name">Name of dish: {props.dish.nameDish}</p>
       {props.dish.ingredients.length !== 0 ? (
-        <div>Ingredients: {ingredientsList}</div>
+        <div className="ingredients">
+          <p className="ingredients__title">Ingredients:</p>
+          {ingredientsList}
+        </div>
       ) : null}
-      {props.dish.kcal ? <p>Kcal: {props.dish.kcal}</p> : null}
+      {props.dish.kcal ? (
+        <p className="dish__calories">Kcal: {props.dish.kcal}</p>
+      ) : null}
     </>
   );
 };

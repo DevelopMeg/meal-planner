@@ -4,6 +4,7 @@ import MealsInList from "../subcomponents/ListDishesComponents/MealsInList";
 import MainStructureDish from "../subcomponents/MainStructureDish";
 import SearchDishes from "../subcomponents/ListDishesComponents/SearchDishes";
 import SortDishes from "../subcomponents/ListDishesComponents/SortDishes";
+import ImagesList from "../subcomponents/ImagesList";
 import { Redirect, NavLink } from "react-router-dom";
 
 class ListDishes extends Component {
@@ -177,21 +178,31 @@ class ListDishes extends Component {
 
     const dishes = optionShowAddListDishes.map((dish, id) => {
       return (
-        <div key={id} id={dish.id}>
-          <div>
-            <NavLink to="/edit-dish" onClick={handleOpenEditDish}>
+        <div className="dish dish--list-dishes" key={id} id={dish.id}>
+          <div className="dish__box-edit-delete">
+            <NavLink
+              to="/edit-dish"
+              className="dish__edit link"
+              onClick={handleOpenEditDish}
+            >
               edit
             </NavLink>
-            <span
+            <button
+              className="dish__delete"
               onClick={(e) => {
                 handleDeleteDishOfList(e);
                 this.handleDeleteDishOfCurrentShowList(e);
               }}
             >
               X
-            </span>
+            </button>
           </div>
-          <p>Category: {dish.categoryDish}</p>
+
+          <p className="dish__category">
+            category:{" "}
+            <span className="dish__category--name">{dish.categoryDish}</span>
+          </p>
+
           <MainStructureDish dish={dish} />
         </div>
       );
@@ -200,37 +211,46 @@ class ListDishes extends Component {
     return (
       <>
         <Menu shoppingListLength={shoppingListLength} />
-        <button onClick={this.handleStatusOpenAddDishToList}>
-          add new dish
-        </button>
+        <section className="section-list-dishes">
+          <ImagesList name="list-dishes" />
 
-        {mealsSet ? (
-          <MealsInList
-            mealsSet={mealsSet}
-            handleShowListDishesInMeal={this.handleShowListDishesInMeal}
-          />
-        ) : null}
+          <button
+            className="section-list-dishes__add-dish"
+            onClick={this.handleStatusOpenAddDishToList}
+          >
+            add new dish
+          </button>
 
-        {currentShowListDishes.length !== 0 && (
-          <>
-            <SearchDishes
-              valueSearchListDishes={valueSearchListDishes}
-              handleChangeSortSearchValue={this.handleChangeSortSearchValue}
-              handleSearchDishesInList={this.handleSearchDishesInList}
+          {mealsSet ? (
+            <MealsInList
+              mealsSet={mealsSet}
+              handleShowListDishesInMeal={this.handleShowListDishesInMeal}
             />
+          ) : null}
 
-            <SortDishes
-              valueSortCategory={valueSortCategory}
-              handleChangeSortSearchValue={this.handleChangeSortSearchValue}
-            />
+          {currentShowListDishes.length !== 0 && (
+            <>
+              <div className="box-search-sort">
+                <SearchDishes
+                  valueSearchListDishes={valueSearchListDishes}
+                  handleChangeSortSearchValue={this.handleChangeSortSearchValue}
+                  handleSearchDishesInList={this.handleSearchDishesInList}
+                />
 
-            <section>{dishes}</section>
-          </>
-        )}
+                <SortDishes
+                  valueSortCategory={valueSortCategory}
+                  handleChangeSortSearchValue={this.handleChangeSortSearchValue}
+                />
+              </div>
 
-        {currentShowListDishes.length === 0 && statusOpenListDishesInMeal ? (
-          <p>Unfortunately your list dishes is empty</p>
-        ) : null}
+              <section className="dishes">{dishes}</section>
+            </>
+          )}
+
+          {currentShowListDishes.length === 0 && statusOpenListDishesInMeal ? (
+            <p className="info">Unfortunately your list dishes is empty</p>
+          ) : null}
+        </section>
       </>
     );
   }

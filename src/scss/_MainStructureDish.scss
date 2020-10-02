@@ -1,0 +1,288 @@
+.dish {
+  padding: 20px;
+
+  &--plan-meals {
+    background-color: #fffcf4;
+    margin-bottom: 15px;
+    box-shadow: 0 0 2px 0 #dcdad3;
+    border-radius: 4px;
+
+    &:nth-of-type(1) {
+      margin-top: 15px;
+    }
+  }
+
+  &--list-dishes {
+    border: 2px solid #dedbd3;
+    margin-bottom: 25px;
+    border-radius: 8px;
+  }
+
+  &--set-dishes {
+    counter-increment: li;
+    position: relative;
+    background-color: #fffcf4;
+    margin-bottom: 15px;
+    box-shadow: 0 0 2px 0 #dcdad3;
+    border-radius: 4px;
+
+    &::before {
+      content: counter(li);
+      color: #b17f44c7;
+      position: absolute;
+      top: 50%;
+      left: -24px;
+      transform: translateY(-50%);
+      font-weight: 600;
+      font-size: 2rem;
+    }
+  }
+
+  &--set-dish {
+    padding: 10px 20px 15px;
+    border: 2px solid #dedbd3;
+    margin-bottom: 25px;
+    border-radius: 8px;
+  }
+
+  &__name {
+    margin: 0 0 15px;
+  }
+
+  &__calories {
+    margin: 15px 0 0;
+  }
+
+  &__box-edit-delete {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__edit {
+    margin-right: 5px;
+    text-transform: uppercase;
+    padding: 1px 10px;
+  }
+
+  &__delete {
+    width: 30px;
+
+    &--set-dishes {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 2rem;
+    }
+  }
+
+  &__edit,
+  &__delete {
+    font-weight: 600;
+    background-color: #f9f2df;
+    border: 2px solid #f3ead3;
+    color: #67614e;
+  }
+
+  &__category {
+    margin: 10px 0 15px;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+
+    &--name {
+      font-size: 1.6rem;
+      color: #bfb17a;
+      font-weight: 700;
+    }
+  }
+
+  &__add-dish {
+    display: block;
+    margin: 15px auto 0;
+    width: 100%;
+    padding: 6px 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: #fde383;
+    border: 2px solid #f7dc7b;
+    color: #4c4c4c;
+    letter-spacing: 1px;
+
+    &:disabled {
+      background-color: #e8e6e1;
+      border-color: #eaeae9;
+      color: #bfbfbe;
+    }
+  }
+}
+
+.ingredients {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__title {
+    margin: 0;
+    flex-basis: 100%;
+  }
+}
+
+.ingredient {
+  background-color: #fff0c8;
+  margin: 12px 6px 0 0;
+  padding: 5px 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+
+  &__name {
+    margin: 0;
+  }
+
+  &__add-to-list {
+    margin-left: 10px;
+    font-weight: 600;
+    background-color: #dad7ca;
+    border: 2px solid #c7c6c4;
+    color: #42413d;
+    border-radius: 4px;
+    width: 40px;
+    height: 30px;
+
+    &:disabled {
+      color: #b5b2a5;
+    }
+  }
+}
+
+@media (min-width: 480px) {
+
+  .dish__name,
+  .dish__calories,
+  .ingredients__title,
+  .ingredient__name {
+    font-size: 1.8rem;
+  }
+
+  .dish {
+    &--set-dishes {
+      margin-bottom: 20px;
+    }
+
+    &__edit,
+    &__delete {
+      font-size: 1.8rem;
+    }
+
+    &__category {
+      font-size: 1.6rem;
+
+      &--name {
+        font-size: 1.8rem;
+      }
+    }
+
+    &__add-dish {
+      margin-top: 20px;
+      font-size: 1.8rem;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+
+  .dish__name,
+  .dish__calories,
+  .ingredients__title,
+  .ingredient__name {
+    font-size: 2rem;
+    cursor: default;
+  }
+
+  .ingredient {
+    cursor: default;
+
+    &__add-to-list {
+      cursor: pointer;
+
+      &:disabled {
+        cursor: default;
+      }
+    }
+
+    &__btn-icon {
+      font-size: 1.8rem;
+    }
+  }
+
+  .dish {
+
+    &--plan-meals,
+    &--set-dish {
+      margin-right: 12px;
+      flex-basis: 32%;
+
+      &:nth-of-type(1) {
+        margin-top: 0;
+      }
+
+      &:nth-of-type(3n + 2) {
+        margin-left: 6px;
+        margin-right: 6px;
+      }
+
+      &:nth-of-type(3n) {
+        margin-right: 0;
+        margin-left: 12px;
+      }
+    }
+
+    &--list-dishes {
+      flex-basis: 46%;
+      padding: 20px;
+    }
+
+    &--set-dishes {
+      flex-basis: 28%;
+      margin-right: 46px;
+
+      &:nth-of-type(3n + 2) {
+        margin-left: 23px;
+        margin-right: 23px;
+      }
+
+      &:nth-of-type(3n) {
+        margin-right: 0;
+        margin-left: 46px;
+      }
+
+      &::before {
+        font-size: 2.5rem;
+        left: -26px;
+      }
+    }
+
+    &__edit,
+    &__delete {
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    &__delete--set-dishes {
+      font-size: 2.2rem;
+    }
+
+    &__category {
+      cursor: default;
+      font-size: 1.8rem;
+
+      &--name {
+        font-size: 2rem;
+      }
+    }
+
+    &__add-dish {
+      cursor: pointer;
+      font-size: 2rem;
+    }
+  }
+}

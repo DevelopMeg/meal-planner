@@ -3,10 +3,14 @@ import React from "react";
 const SearchDishes = (props) => {
   return (
     <>
-      <form>
-        <label htmlFor="searchDishes">search by name dish</label>
+      <form className="search-dishes">
+        <label className="search-dishes__label" htmlFor="searchDishes">
+          search by name dish
+        </label>
+
         <input
           id="searchDishes"
+          className="search-dishes__input"
           type="text"
           name="valueSearchListDishes"
           value={props.valueSearchListDishes}
