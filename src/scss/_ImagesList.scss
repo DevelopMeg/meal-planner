@@ -1,0 +1,102 @@
+.images-list {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  height: 70vh;
+  border-radius: 10px;
+  overflow: hidden;
+
+  &__image {
+    flex-basis: 50%;
+    background-size: cover;
+  }
+
+  &__image-shopping-list {
+    &:nth-child(1) {
+      background-image: url("../images/shopping-list-item-one.jpg");
+    }
+
+    &:nth-child(2) {
+      background-image: url("../images/shopping-list-item-two.jpg");
+    }
+
+    &:nth-child(3) {
+      background-image: url("../images/shopping-list-item-three.jpg");
+    }
+
+    &:nth-child(4) {
+      background-image: url("../images/shopping-list-item-four.jpg");
+    }
+  }
+
+  &__image-list-dishes {
+    &:nth-child(1) {
+      background-image: url("../images/list-dishes-item-one.jpg");
+      background-position-y: 90%;
+    }
+
+    &:nth-child(2) {
+      background-image: url("../images/list-dishes-item-two.jpg");
+    }
+
+    &:nth-child(3) {
+      background-image: url("../images/list-dishes-item-three.jpg");
+    }
+
+    &:nth-child(4) {
+      background-image: url("../images/list-dishes-item-four.jpg");
+    }
+  }
+
+  &__image-plan-meals {
+    &:nth-child(1) {
+      background-image: url("../images/plan-meals-item-one.jpg");
+      background-position-y: 65%;
+    }
+
+    &:nth-child(2) {
+      background-image: url("../images/plan-meals-item-two.jpg");
+      background-position-y: 40%;
+    }
+
+    &:nth-child(3) {
+      background-image: url("../images/plan-meals-item-three.jpg");
+      background-position-y: 40%;
+    }
+
+    &:nth-child(4) {
+      background-image: url("../images/plan-meals-item-four.jpg");
+      background-position-y: 50%;
+    }
+  }
+}
+
+@media (min-width: 480px) {
+  .images-list {
+    width: 90%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .images-list {
+    flex-wrap: nowrap;
+    height: 40vh;
+    width: 85%;
+
+    &__image {
+      flex-basis: 25%;
+    }
+  }
+}
+
+@media(min-width: 1400px) {
+  .images-list {
+    width: 78%;
+  }
+}
+
+@media(min-width:1650px) {
+  .images-list {
+    width: 70%;
+  }
+}

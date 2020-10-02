@@ -112,6 +112,8 @@
 
     &__info {
       font-size: 2.4rem;
+      cursor: default;
+
 
       &--warning {
         font-size: 2rem;
@@ -161,6 +163,7 @@
     &__name {
       margin-left: 25px;
       font-size: 2.4rem;
+      cursor: pointer;
     }
   }
 }

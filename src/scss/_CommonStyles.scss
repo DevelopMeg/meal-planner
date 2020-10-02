@@ -10,7 +10,11 @@ html {
 
 body {
   font-size: 1.6rem;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
+}
+
+main {
+  min-height: 76vh;
 }
 
 .link {
@@ -18,24 +22,60 @@ body {
   color: #000;
 }
 
-main {
-  min-height: 76vh;
+.info {
+  margin: 30px auto;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #de525b;
+  font-weight: 500;
 }
 
-@media(min-width: 1024px) {
-  main {
-    min-height: 78vh;
+.btn-come-back {
+  display: block;
+  text-transform: uppercase;
+  background-color: #ffd324;
+  border: 2px solid #f1d463;
+  color: #615423;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+@media(min-width: 480px) {
+  .info {
+    font-size: 1.6rem;
   }
 }
 
-@media(min-width: 1300px) {
+@media (min-width: 1024px) {
+  main {
+    min-height: 78vh;
+  }
+
+  .btn-come-back {
+    padding: 6px 18px;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  .info {
+    margin: 35px auto;
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 1300px) {
   main {
     width: 90%;
     margin: 0 auto;
   }
+
+  .info {
+    font-size: 2rem;
+  }
 }
 
-@media(min-width: 1810px) {
+@media (min-width: 1810px) {
   main {
     width: 80%;
   }
