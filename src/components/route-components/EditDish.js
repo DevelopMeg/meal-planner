@@ -11,8 +11,9 @@ const EditDish = (props) => {
 
   return (
     <>
-      <section>
+      <section className="section-edit-dish">
         <button
+          className="btn-come-back"
           onClick={() => {
             props.handleClearValues();
             handleComeBack();
@@ -20,24 +21,28 @@ const EditDish = (props) => {
         >
           come back
         </button>
+
         <form
+          className="form-dish"
           onSubmit={(e) => {
             props.handleEditDish(e);
             props.handleClearValues();
             handleComeBack();
           }}
         >
-          <MainStructureAddEditDish
-            titleForm="edit dish"
-            titleBtnSubmit="save changes"
-            disabledCategory={true}
-            infoDish={props.infoDish}
-            mealsSet={props.mealsSet}
-            handleChangeChooseCategory={props.handleChangeChooseCategory}
-            handleChangeValueInfoDish={props.handleChangeValueInfoDish}
-            handleAddIngredients={props.handleAddIngredients}
-            handleDeleteIngredients={props.handleDeleteIngredients}
-          />
+          {props.mealsSet.length !== 0 && (
+            <MainStructureAddEditDish
+              titleForm="edit dish"
+              titleBtnSubmit="save changes"
+              disabledCategory={true}
+              infoDish={props.infoDish}
+              mealsSet={props.mealsSet}
+              handleChangeChooseCategory={props.handleChangeChooseCategory}
+              handleChangeValueInfoDish={props.handleChangeValueInfoDish}
+              handleAddIngredients={props.handleAddIngredients}
+              handleDeleteIngredients={props.handleDeleteIngredients}
+            />
+          )}
         </form>
       </section>
     </>

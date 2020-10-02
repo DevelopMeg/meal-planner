@@ -1,0 +1,278 @@
+.section-add-dish,
+.section-edit-dish {
+  padding: 15px 20px 20px;
+}
+
+.form-dish {
+
+  &__box-image {
+    margin: 30px auto;
+    background-image: url("../images/add-edit-dish.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 240px;
+  }
+
+  &__title {
+    margin: 30px 0;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 2rem;
+    background-color: #fff2c0;
+    text-transform: uppercase;
+    color: #67614e;
+  }
+
+  &__label {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+
+    &--ingredient {
+      flex-basis: 100%;
+    }
+  }
+
+  &__input {
+    border: 1px solid #5d5b5b;
+    height: 35px;
+    padding-left: 10px;
+    margin-top: 8px;
+
+    &--name,
+    &--calories {
+      flex-basis: 100%;
+    }
+
+    &--ingredient {
+      flex-basis: 70%;
+    }
+  }
+
+  &__btn-add-ingredient {
+    margin-top: 8px;
+    flex-basis: 25%;
+    height: 35px;
+    text-transform: uppercase;
+    border-radius: 0;
+    font-weight: 600;
+    background-color: #ffd324;
+    border: 2px solid #f1d463;
+    color: #615423;
+
+    &:disabled {
+      border-color: #dedcd6;
+      background-color: #e2e0d9;
+      color: #989898;
+    }
+  }
+
+  &__ingredients-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__ingredient {
+    margin: 0 10px 8px 0;
+  }
+
+  &__btn-delete-ingredient {
+    margin-left: 6px;
+    width: 30px;
+    font-weight: 600;
+    background-color: #fff2c0;
+    border: 2px solid #f5e8b8;
+    color: #67614e;
+  }
+
+  &__categories {
+    flex-basis: 45%;
+    border: 1px solid #5d5b5b;
+    background-color: #fff;
+    font-size: 1.5rem;
+    padding-left: 4px;
+    height: 35px;
+  }
+
+  &__box {
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__categories-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__ingredients-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  &__submit {
+    display: block;
+    margin: 30px auto 0;
+    padding: 8px 18px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: #ffd324;
+    border: 2px solid #f1d463;
+    color: #615423;
+
+    &:disabled {
+      border-color: #dedcd6;
+      background-color: #e2e0d9;
+      color: #989898;
+    }
+  }
+}
+
+@media(min-width: 360px) {
+
+  .form-dish {
+    &__structure-box {
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    &__box-image {
+      background-position-y: 90%;
+    }
+
+    &__label {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+@media(min-width:480px) {
+
+  .form-dish {
+
+    &__structure-box {
+      width: 75%;
+    }
+
+    &__categories {
+      flex-basis: 52%;
+      font-size: 1.6rem;
+    }
+
+    &__box-image {
+      width: 80%;
+    }
+
+    &__btn-add-ingredient {
+      flex-basis: 28%;
+    }
+  }
+}
+
+@media(min-width: 1024px) {
+  .form-dish {
+    margin: 40px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    &__box-image {
+      margin: 0;
+      flex-basis: 42%;
+      height: 440px;
+    }
+
+    &__structure-box {
+      flex-basis: 40%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &__title {
+      margin: 0 0 30px;
+      font-size: 2.8rem;
+    }
+
+    &__label,
+    &__input,
+    &__categories,
+    &__submit,
+    &__ingredient {
+      font-size: 2rem;
+    }
+
+    &__input,
+    &__categories,
+    &__btn-add-ingredient {
+      height: 46px;
+      cursor: pointer
+    }
+
+    &__ingredient {
+      margin-right: 14px;
+    }
+
+    &__btn-delete-ingredient {
+      margin-left: 8px;
+      width: 40px;
+      cursor: pointer;
+    }
+
+    &__btn-add-ingredient {
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+
+      &:disabled {
+        cursor: default;
+      }
+    }
+
+    &__submit {
+      margin-top: 15px;
+      padding: 12px 40px;
+      cursor: pointer;
+
+      &:disabled {
+        cursor: default;
+      }
+    }
+
+    &__box {
+      margin: 25px 0;
+    }
+
+  }
+}
+
+@media(min-width: 1280px) {
+  .form-dish {
+    width: 90%;
+
+    &__box {
+      margin: 30px 0;
+    }
+  }
+}
+
+@media(min-width: 1400px) {
+  .form-dish {
+
+    margin-top: 60px;
+    width: 75%;
+
+    &__title {
+      margin-bottom: 40px;
+    }
+
+    &__box {
+      margin: 35px 0;
+    }
+  }
+}
