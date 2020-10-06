@@ -18,7 +18,10 @@ const CountCalories = (props) => {
   }
 
   return dishesHaveCalories.length !== 0 ? (
-    <h4>{`Total calories for ${props.chooseDayToSetDishes} day: ${totalCalories}`}</h4>
+    <h4 className="meals-for-day__calories">
+      {`Total calories for ${props.chooseDayToSetDishes} day: `}
+      <span className="meals-for-day__calories--amount">{totalCalories}</span>
+    </h4>
   ) : null;
 };
 

@@ -4,7 +4,7 @@ import MainStructureDish from "../MainStructureDish";
 const MealForDay = (props) => {
   const meal = props.completeSetMealsInDay.map((dish, id) => {
     return (
-      <div key={id}>
+      <div key={id} className="dish dish--plan-meals">
         <MainStructureDish
           name="plan-meals"
           dish={dish}
@@ -18,9 +18,9 @@ const MealForDay = (props) => {
   });
 
   return (
-    <section>
-      <h3>{props.nameMeal}</h3>
-      {meal}
+    <section className="meal">
+      <h3 className="meal__name">{props.nameMeal}</h3>
+      <div className="meal__box">{meal}</div>
     </section>
   );
 };

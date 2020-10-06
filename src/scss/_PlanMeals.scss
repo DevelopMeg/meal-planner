@@ -1,0 +1,172 @@
+.section-plan-meals {
+  padding: 40px 20px 20px;
+}
+
+.info-plan-meals {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 0;
+
+  &__current-day {
+    margin: 0;
+  }
+
+  &__clear-btn {
+    display: block;
+    margin: 15px auto 0;
+    border: 2px solid #e0dac9;
+    background-color: #f9f2df;
+    text-transform: uppercase;
+    padding: 10px 0;
+    width: 70%;
+    font-weight: 600;
+    color: #4c4c4c;
+  }
+}
+
+.meals-for-day {
+  &__list {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  &__add-dish {
+    display: block;
+    margin: 0 auto 35px;
+    text-transform: uppercase;
+    background-color: #f9f2df;
+    border: 2px dashed #b3aa8a;
+    padding: 10px 18px;
+    font-weight: 700;
+    color: #847652;
+  }
+
+  &__calories {
+    font-weight: 300;
+    text-align: center;
+
+    &--amount {
+      font-weight: 600;
+    }
+  }
+}
+
+.meal {
+  margin-bottom: 25px;
+
+  &__name {
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    background-color: #fea;
+    padding: 6px 18px;
+  }
+}
+
+@media(min-width:480px) {
+  .info-plan-meals {
+    margin: 35px 0;
+
+    &__current-day {
+      font-size: 1.8rem;
+    }
+
+    &__clear-btn {
+      margin-top: 20px;
+      font-size: 1.8rem;
+    }
+  }
+
+  .meals-for-day {
+    &__add-dish {
+      font-size: 1.8rem;
+    }
+
+    &__list {
+      width: 80%;
+    }
+  }
+
+  .meal {
+    &__name {
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+@media(min-width: 1024px) {
+  .info-plan-meals {
+    margin: 45px 0;
+
+    &__current-day {
+      font-size: 2rem;
+    }
+
+    &__clear-btn {
+      width: 25%;
+      font-size: 2rem;
+      padding: 12px 0;
+      cursor: pointer;
+    }
+  }
+
+  .meals-for-day {
+    &__add-dish {
+      font-size: 2rem;
+      padding: 14px 50px;
+      margin: 0 auto 45px;
+      cursor: pointer;
+    }
+
+    &__calories {
+      margin: 35px auto;
+      font-size: 2.2rem;
+      cursor: default;
+    }
+  }
+
+  .meal {
+    &__name {
+      margin-bottom: 25px;
+      font-size: 2.6rem;
+      padding: 10px 0;
+    }
+
+    &__box {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+  }
+}
+
+@media(min-width: 1440px) {
+
+  .info-plan-meals {
+    &__clear-btn {
+      width: 18%;
+    }
+  }
+
+  .meals-for-day__list {
+    width: 70%;
+  }
+}
+
+@media(min-width: 1900px) {
+
+  .info-plan-meals {
+    &__clear-btn {
+      width: 14%;
+    }
+  }
+
+
+  .meals-for-day__list {
+    width: 65%;
+  }
+}

@@ -39,7 +39,7 @@ const MealsForDay = (props) => {
   return (
     <>
       {props.setDishes.length !== 0 && filterDishesForDay.length !== 0 ? (
-        <div>
+        <div className="meals-for-day__list">
           {meals}
           <CountCalories
             filterDishesForDay={filterDishesForDay}
@@ -47,7 +47,7 @@ const MealsForDay = (props) => {
           />
         </div>
       ) : (
-        <h4>{`Unfortunately your plan for ${props.chooseDayToSetDishes} is empty`}</h4>
+        <h4 className="info">{`Unfortunately your plan for ${props.chooseDayToSetDishes} is empty`}</h4>
       )}
     </>
   );

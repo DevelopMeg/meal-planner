@@ -4,8 +4,16 @@ import { NavLink } from "react-router-dom";
 const DaysOfWeek = (props) => {
   const days = props.daysSet.map((item, id) => {
     return (
-      <li key={id} onClick={props.handleOpenPlanForDay}>
-        <NavLink to={`/plan-meals/${item}`} id={item}>
+      <li
+        key={id}
+        className="days-plan-meals__item"
+        onClick={props.handleOpenPlanForDay}
+      >
+        <NavLink
+          to={`/plan-meals/${item}`}
+          id={item}
+          className="days-plan-meals__link link"
+        >
           {item}
         </NavLink>
       </li>
@@ -13,8 +21,8 @@ const DaysOfWeek = (props) => {
   });
 
   return (
-    <nav>
-      <ul>{days}</ul>
+    <nav className="days-plan-meals">
+      <ul className="days-plan-meals__item-list">{days}</ul>
     </nav>
   );
 };
