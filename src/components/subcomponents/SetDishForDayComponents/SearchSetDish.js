@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import MainStructureDish from "../MainStructureDish";
 
-const ListSearchDishes = (props) => {
+const SearchSetDish = (props) => {
   const history = useHistory();
 
   const handleComeBack = () => {
@@ -34,12 +34,13 @@ const ListSearchDishes = (props) => {
   }
 
   return (
-    <div key={props.dish.id} id={props.dish.id}>
-      <p>Category: {props.dish.categoryDish}</p>
+    <div className="dish dish--set-dish" key={props.dish.id} id={props.dish.id}>
+      <p className="dish__category">Category: {props.dish.categoryDish}</p>
 
       <MainStructureDish dish={props.dish} />
 
       <button
+        className="dish__add-dish"
         onClick={() => {
           props.handleClearSetSettings();
           props.handleAddDishToMealForDay(props.dish.id);
@@ -53,4 +54,4 @@ const ListSearchDishes = (props) => {
   );
 };
 
-export default ListSearchDishes;
+export default SearchSetDish;

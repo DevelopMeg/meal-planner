@@ -1,5 +1,5 @@
 import React from "react";
-import ListSearchDishes from "../subcomponents/SetDishForDayComponents/ListSearchDishes";
+import SearchSetDish from "../subcomponents/SetDishForDayComponents/SearchSetDish";
 import SearchSetDishes from "../subcomponents/SetDishForDayComponents/SearchSetDishes";
 import { useHistory } from "react-router-dom";
 
@@ -15,7 +15,7 @@ const SetDishForDay = (props) => {
   if (props.arrSearchDishesToSetDish.length !== 0) {
     dishesToSetDish = props.arrSearchDishesToSetDish.map((dish, id) => {
       return (
-        <ListSearchDishes
+        <SearchSetDish
           key={id}
           dish={dish}
           handleClearSetSettings={props.handleClearSetSettings}
@@ -28,8 +28,9 @@ const SetDishForDay = (props) => {
   }
 
   return (
-    <>
+    <section className="section-set-dish">
       <button
+        className="btn-come-back"
         onClick={() => {
           props.handleClearSetSettings();
           handleComeBack();
@@ -38,7 +39,12 @@ const SetDishForDay = (props) => {
         come back
       </button>
 
-      <h3>add dish to {props.chooseMealToSet}</h3>
+      <div className="section-set-dish__image"></div>
+
+      <h3 className="section-set-dish__title">
+        add dish to {props.chooseMealToSet}
+      </h3>
+
       <SearchSetDishes
         handleChooseOptionSetDish={props.handleChooseOptionSetDish}
         handleSearchDish={props.handleSearchDish}
@@ -50,7 +56,7 @@ const SetDishForDay = (props) => {
         arrSearchDishesToSetDish={props.arrSearchDishesToSetDish}
         dishesToSetDish={dishesToSetDish}
       />
-    </>
+    </section>
   );
 };
 
