@@ -1,0 +1,277 @@
+.section-shopping-list {
+  padding: 20px;
+}
+
+.add-product {
+  margin: 0 auto 45px;
+  width: 95%;
+
+  &__box {
+    margin: 5px 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &:nth-of-type(2) {
+      margin-bottom: 25px;
+    }
+  }
+
+  &__label {
+    display: block;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  &__input {
+    width: 100%;
+    height: 40px;
+    border: 2px solid #cecdcb;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  &__submit {
+    width: 100%;
+    height: 35px;
+    display: block;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    background-color: #ffd324;
+    border: 2px solid #f1d463;
+    border-radius: 4px;
+    color: #615423;
+
+    &:disabled {
+      border-color: #dad6c5;
+      background-color: #dad6c5;
+      color: #989898;
+    }
+  }
+}
+
+.products-list {
+  margin-top: 40px;
+
+  &__title {
+    margin: 0;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2.5rem;
+    background-color: #f3e9ddc7;
+    padding: 8px 0;
+  }
+
+  &__products {
+    list-style: none;
+    margin: 30px 20px 0;
+    padding: 0;
+    counter-reset: li;
+  }
+}
+
+.product {
+  margin-bottom: 15px;
+  padding: 4px 4px 15px 0;
+  word-break: break-word;
+  background-color: #f3e9ddc7;
+  counter-increment: li;
+  position: relative;
+  border: 1px solid #e6e5e2;
+
+  &::before {
+    content: counter(li);
+    color: #b17f44c7;
+    position: absolute;
+    top: 50%;
+    left: -24px;
+    transform: translateY(-50%);
+    font-weight: 600;
+    font-size: 2rem;
+  }
+
+  &__box-btn {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__delete,
+  &__edit {
+    width: 16%;
+    height: 28px;
+    border: 1px solid #cecdcb;
+    background-color: #fff;
+    border-radius: 4px;
+    color: #828282;
+    font-weight: 600;
+  }
+
+  &__edit {
+    margin-left: 2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__edit-icon {
+    position: relative;
+    z-index: -1;
+  }
+
+  &__box-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin: 10px auto 0;
+  }
+
+  &__name,
+  &__count {
+    margin: 0;
+    color: #313131;
+  }
+
+  &__name {
+    flex-basis: 80%;
+  }
+
+  &__product {
+    flex-basis: 15%;
+  }
+}
+
+@media (min-width: 360px) {
+  .add-product {
+    width: 90%;
+
+    &__label {
+      font-size: 1.6rem;
+    }
+
+    &__submit {
+      font-size: 1.8rem;
+    }
+  }
+
+  .products-list {
+    &__products {
+      margin: 30px auto 0;
+      width: 80%;
+    }
+  }
+}
+
+@media (min-width: 480px) {
+  .add-product {
+    width: 75%;
+  }
+
+  .products-list {
+    &__products {
+      width: 70%;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .add-product {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 70%;
+
+    &__box {
+      flex-basis: 40%;
+      margin-bottom: 0;
+
+      &:nth-of-type(2) {
+        margin-bottom: 0;
+      }
+    }
+
+    &__label {
+      font-size: 1.8rem;
+    }
+
+    &__submit {
+      flex-basis: 10%;
+      font-size: 2.2rem;
+      height: 46px;
+      cursor: pointer;
+
+      &:disabled {
+        cursor: default;
+      }
+    }
+
+    &__input {
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+  }
+
+  .products-list {
+    &__title {
+      width: 50%;
+      margin: 0 auto;
+    }
+
+    &__products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 65%;
+    }
+  }
+
+  .product {
+    flex-basis: 46%;
+    padding: 6px 6px 20px 0;
+    margin-bottom: 20px;
+
+    &__box-info {
+      margin-top: 20px;
+      font-size: 2rem;
+    }
+
+    &::before {
+      font-size: 2.5rem;
+      left: -30px;
+    }
+
+    &__delete,
+    &__edit {
+      height: 36px;
+      font-size: 2.2rem;
+      cursor: pointer;
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  .products-list {
+    &__products {
+      width: 52%;
+    }
+
+    &__title {
+      width: 45%;
+    }
+  }
+
+
+  .add-product {
+    width: 60%;
+  }
+}
+
+@media (min-width: 1650px) {
+  .add-product {
+    width: 55%;
+  }
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import Product from "./Product";
 
-const ProductList = (props) => {
+const ProductsList = (props) => {
   const list = props.shoppingList.map((item, id) => {
     return (
       <Product
@@ -14,11 +14,15 @@ const ProductList = (props) => {
   });
 
   return (
-    <section>
-      <h3>shopping list</h3>
-      {props.shoppingList.length !== 0 ? <ol>{list}</ol> : null}
+    <section className="products-list">
+      <h3 className="products-list__title">shopping list</h3>
+      {props.shoppingList.length !== 0 ? (
+        <ol className="products-list__products">{list}</ol>
+      ) : (
+        <p className="info">Unfortunately your shopping list is empty</p>
+      )}
     </section>
   );
 };
 
-export default ProductList;
+export default ProductsList;

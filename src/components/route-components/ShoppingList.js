@@ -1,7 +1,8 @@
 import React from "react";
 import Menu from "../subcomponents/Menu";
 import AddProduct from "../subcomponents/ShoppingListComponents/AddProduct";
-import ProductList from "../subcomponents/ShoppingListComponents/ProductList";
+import ProductsList from "../subcomponents/ShoppingListComponents/ProductsList";
+import ImagesList from "../subcomponents/ImagesList";
 
 const ShoppingList = (props) => {
   return (
@@ -10,7 +11,7 @@ const ShoppingList = (props) => {
         shoppingListLength={props.shoppingList.length}
         handleClearOpenMenuItem={props.handleClearOpenMenuItem}
       />
-      <section>
+      <section className="section-shopping-list">
         <AddProduct
           infoProduct={props.infoProduct}
           shoppingList={props.shoppingList}
@@ -21,7 +22,9 @@ const ShoppingList = (props) => {
           handleEditProductList={props.handleEditProductList}
         />
 
-        <ProductList
+        <ImagesList name="shopping-list" />
+
+        <ProductsList
           shoppingList={props.shoppingList}
           handleOpenEditProductList={props.handleOpenEditProductList}
           handleDeleteProductList={props.handleDeleteProductList}
