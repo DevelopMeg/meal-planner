@@ -15,8 +15,9 @@ const SetDishesForDay = (props) => {
   };
 
   return (
-    <>
+    <section className="section-set-dishes">
       <button
+        className="btn-come-back"
         onClick={() => {
           props.handleClearStatusSetDishes();
           handleComeBack();
@@ -24,6 +25,9 @@ const SetDishesForDay = (props) => {
       >
         come back
       </button>
+
+      <div className="section-set-dishes__image"></div>
+
       {props.mealsSet ? (
         <MealsOfWeek
           mealsSet={props.mealsSet}
@@ -32,20 +36,24 @@ const SetDishesForDay = (props) => {
           chooseDayToSetDishes={props.chooseDayToSetDishes}
         />
       ) : null}
+
       {props.chooseMealToSet ? (
-        <button onClick={handleOpenSetDish}>
-          set dishes for {props.chooseMealToSet}
-        </button>
+        <section className="already-set-dishes">
+          <button
+            className="already-set-dishes__add-dish"
+            onClick={handleOpenSetDish}
+          >
+            set dishes for {props.chooseMealToSet}
+          </button>
+          <AlreadySetDishes
+            setDishesInMealOfDay={props.setDishesInMealOfDay}
+            chooseMealToSet={props.chooseMealToSet}
+            chooseDayToSetDishes={props.chooseDayToSetDishes}
+            handleDeleteDishOfSetList={props.handleDeleteDishOfSetList}
+          />
+        </section>
       ) : null}
-      {props.chooseMealToSet ? (
-        <AlreadySetDishes
-          setDishesInMealOfDay={props.setDishesInMealOfDay}
-          chooseMealToSet={props.chooseMealToSet}
-          chooseDayToSetDishes={props.chooseDayToSetDishes}
-          handleDeleteDishOfSetList={props.handleDeleteDishOfSetList}
-        />
-      ) : null}
-    </>
+    </section>
   );
 };
 

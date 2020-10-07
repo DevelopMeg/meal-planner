@@ -6,12 +6,14 @@ const MealsOfWeek = (props) => {
     return (
       <li
         key={id}
+        className="meals-set-dishes__item"
         onClick={(e) => {
           props.handleChooseMealToSet(e);
           props.handleShowDishes(e);
         }}
       >
         <NavLink
+          className="meals-set-dishes__link link"
           to={`/set-dishes-for-day/${props.chooseDayToSetDishes}/${item}`}
         >
           {item}
@@ -21,8 +23,8 @@ const MealsOfWeek = (props) => {
   });
 
   return (
-    <nav>
-      <ul>{meals}</ul>
+    <nav className="meals-set-dishes">
+      <ul className="meals-set-dishes__item-list">{meals}</ul>
     </nav>
   );
 };
