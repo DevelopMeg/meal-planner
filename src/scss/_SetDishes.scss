@@ -6,37 +6,29 @@
     background-image: url("../images/set-dishes.jpg");
     background-position-y: 37%;
     background-size: cover;
-    height: 185px;
-    width: 95%;
+    @include handleSize(95%, 185px);
   }
 }
 
 .already-set-dishes {
   &__add-dish {
-    display: block;
-    margin: 0 auto 35px;
-    text-transform: uppercase;
-    background-color: #f9f2df;
-    border: 2px dashed #b3aa8a;
-    padding: 10px 18px;
-    font-weight: 700;
-    color: #847652;
+    @include mainCreamyDashedButton();
   }
 
   &__title {
     margin: 0 auto;
+    padding: 10px 20px;
+    font-size: 2rem;
     text-align: center;
     text-transform: uppercase;
-    font-size: 2rem;
     background-color: #fea;
-    padding: 10px 20px;
   }
 
   &__dishes {
-    list-style: none;
-    width: 90%;
     margin: 15px auto 0;
     padding: 0;
+    list-style: none;
+    width: 90%;
     counter-reset: li;
   }
 }
@@ -69,33 +61,31 @@
 
   .section-set-dishes {
     &__image {
-      height: 280px;
-      width: 60%;
-      background-position-y: 54%;
       margin: 30px auto 40px;
+      @include handleSize(60%, 280px);
+      background-position-y: 54%;
     }
   }
 
   .already-set-dishes {
     &__add-dish {
-      font-size: 2.2rem;
-      padding: 12px 22px;
       margin: 0 auto 45px;
+      padding: 12px 22px;
+      font-size: 2.2rem;
       cursor: pointer;
     }
 
     &__title {
+      padding: 12px 0;
       width: 80%;
       font-size: 2.4rem;
       letter-spacing: 1px;
-      padding: 12px 0;
     }
 
     &__dishes {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
       margin-top: 35px;
+      @include flexWrap();
+      justify-content: flex-start;
     }
   }
 }
@@ -137,5 +127,4 @@
       width: 65%;
     }
   }
-
 }

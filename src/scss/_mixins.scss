@@ -1,0 +1,75 @@
+@mixin mainYellowButton {
+  border: 2px solid #f1d463;
+  text-transform: uppercase;
+  font-weight: 600;
+  background-color: #ffd324;
+  color: #615423;
+}
+
+
+@mixin mainCreamyButton {
+  padding: 10px 0;
+  border: 2px solid #e0dac9;
+  width: 70%;
+  display: block;
+  text-transform: uppercase;
+  font-weight: 600;
+  background-color: #f9f2df;
+  color: #5d5b5b;
+}
+
+@mixin mainCreamyDashedButton {
+  margin: 0 auto 35px;
+  padding: 10px 18px;
+  border: 2px dashed #b3aa8a;
+  display: block;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-color: #f9f2df;
+  color: #5d5b5b;
+}
+
+@mixin disabledButton {
+  border-color: #dedcd6;
+  background-color: #e2e0d9;
+  color: #989898;
+}
+
+@mixin counterPseudoElement {
+  content: counter(li);
+  position: absolute;
+  top: 50%;
+  left: -24px;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  font-weight: 600;
+  color: #b17f44c7;
+}
+
+@mixin flexWrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexBetweenCenter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flexWrapStart {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+@mixin handleSize($width, $height) {
+  width: $width;
+  height: $height;
+}

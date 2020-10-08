@@ -1,7 +1,5 @@
 .head {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flexCenter();
   height: 12vh;
 
   &__title {
@@ -24,7 +22,6 @@
     &__title {
       margin-right: 20px;
       font-size: 3.4rem;
-
     }
 
     &__image {

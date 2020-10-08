@@ -1,7 +1,6 @@
 .images-list {
   margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
+  @include flexWrap();
   height: 70vh;
   border-radius: 10px;
   overflow: hidden;
@@ -80,8 +79,7 @@
 @media (min-width: 1024px) {
   .images-list {
     flex-wrap: nowrap;
-    height: 40vh;
-    width: 85%;
+    @include handleSize(85%, 40vh);
 
     &__image {
       flex-basis: 25%;

@@ -18,37 +18,29 @@
   }
 
   &__label {
-    display: block;
-    text-transform: uppercase;
-    font-size: 1.4rem;
     margin-bottom: 10px;
+    display: block;
+    font-size: 1.4rem;
+    text-transform: uppercase;
     font-weight: 600;
   }
 
   &__input {
-    width: 100%;
-    height: 40px;
-    border: 2px solid #cecdcb;
     padding: 10px;
+    border: 2px solid #cecdcb;
+    @include handleSize(100%, 40px);
     border-radius: 4px;
   }
 
   &__submit {
-    width: 100%;
-    height: 35px;
+    @include mainYellowButton();
+    @include handleSize(100%, 35px);
     display: block;
-    text-transform: uppercase;
-    font-weight: 600;
     letter-spacing: 1px;
-    background-color: #ffd324;
-    border: 2px solid #f1d463;
     border-radius: 4px;
-    color: #615423;
 
     &:disabled {
-      border-color: #dad6c5;
-      background-color: #dad6c5;
-      color: #989898;
+      @include disabledButton();
     }
   }
 }
@@ -58,17 +50,17 @@
 
   &__title {
     margin: 0;
+    padding: 8px 0;
     text-transform: uppercase;
     text-align: center;
     font-size: 2.5rem;
     background-color: #f3e9ddc7;
-    padding: 8px 0;
   }
 
   &__products {
-    list-style: none;
     margin: 30px 20px 0;
     padding: 0;
+    list-style: none;
     counter-reset: li;
   }
 }
@@ -76,21 +68,15 @@
 .product {
   margin-bottom: 15px;
   padding: 4px 4px 15px 0;
-  word-break: break-word;
-  background-color: #f3e9ddc7;
-  counter-increment: li;
-  position: relative;
   border: 1px solid #e6e5e2;
+  position: relative;
+  background-color: #f3e9ddc7;
+  word-break: break-word;
+  counter-increment: li;
+
 
   &::before {
-    content: counter(li);
-    color: #b17f44c7;
-    position: absolute;
-    top: 50%;
-    left: -24px;
-    transform: translateY(-50%);
-    font-weight: 600;
-    font-size: 2rem;
+    @include counterPseudoElement();
   }
 
   &__box-btn {
@@ -100,13 +86,12 @@
 
   &__delete,
   &__edit {
-    width: 16%;
-    height: 28px;
     border: 1px solid #cecdcb;
-    background-color: #fff;
-    border-radius: 4px;
-    color: #828282;
+    @include handleSize(16%, 28px);
     font-weight: 600;
+    background-color: #fff;
+    color: #828282;
+    border-radius: 4px;
   }
 
   &__edit {
@@ -121,11 +106,11 @@
   }
 
   &__box-info {
+    margin: 10px auto 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 90%;
-    margin: 10px auto 0;
   }
 
   &__name,
@@ -178,15 +163,15 @@
 
 @media (min-width: 1024px) {
   .add-product {
+    margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 10px;
     width: 70%;
 
     &__box {
-      flex-basis: 40%;
       margin-bottom: 0;
+      flex-basis: 40%;
 
       &:nth-of-type(2) {
         margin-bottom: 0;
@@ -198,9 +183,9 @@
     }
 
     &__submit {
+      height: 46px;
       flex-basis: 10%;
       font-size: 2.2rem;
-      height: 46px;
       cursor: pointer;
 
       &:disabled {
@@ -216,23 +201,21 @@
 
   .products-list {
     &__title {
-      width: 50%;
       margin: 0 auto;
+      width: 50%;
     }
 
     &__products {
-      display: flex;
-      flex-wrap: wrap;
+      @include flexWrapStart();
       justify-content: space-between;
-      align-items: flex-start;
       width: 65%;
     }
   }
 
   .product {
-    flex-basis: 46%;
-    padding: 6px 6px 20px 0;
     margin-bottom: 20px;
+    padding: 6px 6px 20px 0;
+    flex-basis: 46%;
 
     &__box-info {
       margin-top: 20px;
@@ -240,8 +223,8 @@
     }
 
     &::before {
-      font-size: 2.5rem;
       left: -30px;
+      font-size: 2.5rem;
     }
 
     &__delete,
@@ -263,7 +246,6 @@
       width: 45%;
     }
   }
-
 
   .add-product {
     width: 60%;

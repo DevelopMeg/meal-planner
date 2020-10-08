@@ -2,31 +2,32 @@
   padding: 15px 20px 20px;
 
   &__image {
+    margin: 25px auto;
     background-image: url("../images/set-dish.jpg");
     background-position-y: 55%;
     background-size: cover;
     height: 186px;
-    margin: 25px auto;
+
   }
 
   &__title {
+    margin: 25px auto;
+    padding: 10px 0;
     text-transform: uppercase;
     text-align: center;
     background-color: #fde383;
-    padding: 10px 0;
-    margin: 25px auto;
   }
 
   &__btn-search {
-    display: block;
     margin: 15px auto 0;
-    border: 2px solid #e0dac9;
-    background-color: #f9f2df;
-    text-transform: uppercase;
     padding: 10px 0;
+    border: 2px solid #e0dac9;
+    display: block;
     width: 100%;
+    text-transform: uppercase;
     font-weight: 600;
-    color: #4c4c4c;
+    background-color: #f9f2df;
+    color: $darkGray;
   }
 
   &__all-dishes {
@@ -38,46 +39,36 @@
 .section-search-dish {
   &__form {
     margin: 30px auto 35px;
-    display: flex;
-    flex-wrap: wrap;
+    @include flexWrap();
     justify-content: space-between;
   }
 
   &__label {
-    flex-basis: 100%;
     margin-bottom: 10px;
-    text-transform: uppercase;
+    flex-basis: 100%;
     font-size: 1.5rem;
+    text-transform: uppercase;
   }
 
   &__input {
     padding-left: 10px;
-    width: 70%;
-    height: 32px;
-    border: 1px solid #5d5b5b;
+    border: 1px solid $darkGray;
+    @include handleSize(70%, 32px);
   }
 
   &__btn-search {
-    text-transform: uppercase;
+    @include mainYellowButton();
     border-radius: 0;
-    font-weight: 600;
-    background-color: #ffd324;
-    border: 2px solid #f1d463;
-    color: #615423;
   }
 }
 
 @media(min-width: 480px) {
   .section-set-dish {
     &__image {
-      height: 230px;
-      width: 90%;
+      @include handleSize(90%, 230px);
     }
 
-    &__btn-search {
-      width: 80%;
-    }
-
+    &__btn-search,
     &__all-dishes {
       width: 80%;
     }
@@ -88,7 +79,6 @@
   }
 
   .section-search-dish {
-
     &__dishes {
       margin: 0 auto;
       width: 90%;
@@ -111,8 +101,7 @@
 @media(min-width: 1024px) {
   .section-set-dish {
     &__image {
-      height: 180px;
-      width: 80%;
+      @include handleSize(80%, 180px);
     }
 
     &__title {
@@ -136,14 +125,11 @@
     }
 
     &__all-dishes {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-start;
+      @include flexWrapStart();
     }
   }
 
   .section-search-dish {
-
     &__form {
       margin: 40px auto 45px;
       width: 45%;
@@ -166,17 +152,15 @@
 
     &__dishes {
       margin: 0 auto;
+      @include flexWrapStart();
       width: 90%;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-start;
     }
   }
 }
 
 @media(min-width: 1440px) {
-  .section-set-dish {
 
+  .section-set-dish {
     &__title {
       width: 70%;
       font-size: 2.6rem;

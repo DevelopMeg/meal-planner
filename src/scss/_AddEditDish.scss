@@ -4,13 +4,11 @@
 }
 
 .form-dish {
-
   &__box-image {
     margin: 30px auto;
     background-image: url("../images/add-edit-dish.jpg");
     background-size: cover;
-    width: 100%;
-    height: 240px;
+    @include handleSize(100%, 240px);
   }
 
   &__title {
@@ -20,7 +18,7 @@
     font-size: 2rem;
     background-color: #fff2c0;
     text-transform: uppercase;
-    color: #67614e;
+    color: $powderBrown;
   }
 
   &__label {
@@ -33,10 +31,10 @@
   }
 
   &__input {
-    border: 1px solid #5d5b5b;
-    height: 35px;
-    padding-left: 10px;
     margin-top: 8px;
+    padding-left: 10px;
+    border: 1px solid $darkGray;
+    height: 35px;
 
     &--name,
     &--calories {
@@ -49,29 +47,22 @@
   }
 
   &__btn-add-ingredient {
+    @include mainYellowButton();
     margin-top: 8px;
     flex-basis: 25%;
     height: 35px;
-    text-transform: uppercase;
     border-radius: 0;
-    font-weight: 600;
-    background-color: #ffd324;
-    border: 2px solid #f1d463;
-    color: #615423;
 
     &:disabled {
-      border-color: #dedcd6;
-      background-color: #e2e0d9;
-      color: #989898;
+      @include disabledButton();
     }
   }
 
   &__ingredients-list {
-    list-style: none;
-    padding: 0;
     margin: 20px 0 0;
-    display: flex;
-    flex-wrap: wrap;
+    padding: 0;
+    @include flexWrap();
+    list-style: none;
   }
 
   &__ingredient {
@@ -80,55 +71,44 @@
 
   &__btn-delete-ingredient {
     margin-left: 6px;
+    border: 2px solid #f5e8b8;
     width: 30px;
     font-weight: 600;
     background-color: #fff2c0;
-    border: 2px solid #f5e8b8;
-    color: #67614e;
+    color: $powderBrown;
   }
 
   &__categories {
+    border: 1px solid $darkGray;
+    padding-left: 4px;
     flex-basis: 45%;
-    border: 1px solid #5d5b5b;
+    height: 35px;
     background-color: #fff;
     font-size: 1.5rem;
-    padding-left: 4px;
-    height: 35px;
   }
 
   &__box {
     margin: 20px 0;
-    display: flex;
-    flex-wrap: wrap;
+    @include flexWrap();
   }
 
   &__categories-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flexBetweenCenter();
   }
 
   &__ingredients-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flexBetweenCenter();
     flex-wrap: wrap;
   }
 
   &__submit {
-    display: block;
+    @include mainYellowButton();
     margin: 30px auto 0;
     padding: 8px 18px;
-    text-transform: uppercase;
-    font-weight: 600;
-    background-color: #ffd324;
-    border: 2px solid #f1d463;
-    color: #615423;
+    display: block;
 
     &:disabled {
-      border-color: #dedcd6;
-      background-color: #e2e0d9;
-      color: #989898;
+      @include disabledButton();
     }
   }
 }
@@ -137,8 +117,8 @@
 
   .form-dish {
     &__structure-box {
-      width: 90%;
       margin: 0 auto;
+      width: 90%;
     }
 
     &__box-image {
@@ -154,7 +134,6 @@
 @media(min-width:480px) {
 
   .form-dish {
-
     &__structure-box {
       width: 75%;
     }
@@ -188,11 +167,11 @@
     }
 
     &__structure-box {
-      flex-basis: 40%;
       margin: 0;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      flex-basis: 40%;
     }
 
     &__title {
@@ -247,7 +226,6 @@
     &__box {
       margin: 25px 0;
     }
-
   }
 }
 
@@ -263,7 +241,6 @@
 
 @media(min-width: 1400px) {
   .form-dish {
-
     margin-top: 60px;
     width: 75%;
 

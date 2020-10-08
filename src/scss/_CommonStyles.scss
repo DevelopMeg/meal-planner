@@ -31,14 +31,10 @@ main {
 }
 
 .btn-come-back {
-  display: block;
-  text-transform: uppercase;
-  background-color: #ffd324;
-  border: 2px solid #f1d463;
-  color: #615423;
+  @include mainYellowButton();
   padding: 4px 12px;
+  display: block;
   border-radius: 4px;
-  font-weight: 600;
 }
 
 @media(min-width: 480px) {
@@ -66,8 +62,8 @@ main {
 
 @media (min-width: 1300px) {
   main {
-    width: 90%;
     margin: 0 auto;
+    width: 90%;
   }
 
   .info {

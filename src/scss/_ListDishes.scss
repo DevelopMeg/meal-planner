@@ -2,37 +2,29 @@
   padding: 40px 20px 20px;
 
   &__add-dish {
-    display: block;
+    @include mainCreamyButton();
     margin: 45px auto 35px;
-    border: 2px solid #e0dac9;
-    background-color: #f9f2df;
-    text-transform: uppercase;
-    padding: 10px 0;
-    width: 70%;
-    font-weight: 600;
-    color: #4c4c4c;
   }
 }
 
 .search-dishes,
 .sort-dishes {
-  text-align: center;
   margin: 20px auto 0;
+  text-align: center;
 
   &__label {
-    display: block;
     margin-bottom: 8px;
+    display: block;
     text-transform: uppercase;
   }
 }
 
 .search-dishes__input,
 .sort-dishes__categories {
-  border: 2px solid #d0ccc4;
-  height: 38px;
-  width: 80%;
-  border-radius: 4px;
   padding-left: 10px;
+  border: 2px solid #d0ccc4;
+  @include handleSize(80%, 38px);
+  border-radius: 4px;
   background-color: #f9f8f7;
 }
 
@@ -77,11 +69,9 @@
   }
 
   .box-search-sort {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 70%;
     margin: 0 auto;
+    @include flexCenter();
+    width: 70%;
   }
 
   .search-dishes,
@@ -93,14 +83,13 @@
 
   .search-dishes__input,
   .sort-dishes__categories {
-    font-size: 2rem;
     height: 44px;
+    font-size: 2rem;
     cursor: pointer;
   }
 
   .dishes {
-    display: flex;
-    flex-wrap: wrap;
+    @include flexWrap();
     justify-content: space-between;
   }
 }

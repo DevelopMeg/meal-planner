@@ -1,48 +1,37 @@
 .dish {
   padding: 20px;
 
-  &--plan-meals {
-    background-color: #fffcf4;
+  &--plan-meals,
+  &--set-dishes {
     margin-bottom: 15px;
+    background-color: #fffcf4;
     box-shadow: 0 0 2px 0 #dcdad3;
     border-radius: 4px;
-
-    &:nth-of-type(1) {
-      margin-top: 15px;
-    }
   }
 
-  &--list-dishes {
+  &--plan-meals:nth-of-type(1) {
+    margin-top: 15px;
+  }
+
+
+  &--list-dishes,
+  &--set-dish {
     border: 2px solid #dedbd3;
     margin-bottom: 25px;
     border-radius: 8px;
   }
 
   &--set-dishes {
-    counter-increment: li;
     position: relative;
-    background-color: #fffcf4;
-    margin-bottom: 15px;
-    box-shadow: 0 0 2px 0 #dcdad3;
-    border-radius: 4px;
+    counter-increment: li;
 
     &::before {
-      content: counter(li);
-      color: #b17f44c7;
-      position: absolute;
-      top: 50%;
-      left: -24px;
-      transform: translateY(-50%);
-      font-weight: 600;
-      font-size: 2rem;
+      @include counterPseudoElement();
     }
   }
 
   &--set-dish {
     padding: 10px 20px 15px;
-    border: 2px solid #dedbd3;
-    margin-bottom: 25px;
-    border-radius: 8px;
   }
 
   &__name {
@@ -61,8 +50,8 @@
 
   &__edit {
     margin-right: 5px;
-    text-transform: uppercase;
     padding: 1px 10px;
+    text-transform: uppercase;
   }
 
   &__delete {
@@ -78,47 +67,44 @@
 
   &__edit,
   &__delete {
+    border: 2px solid #f3ead3;
     font-weight: 600;
     background-color: #f9f2df;
-    border: 2px solid #f3ead3;
-    color: #67614e;
+    color: $powderBrown;
   }
 
   &__category {
     margin: 10px 0 15px;
-    text-transform: uppercase;
     font-size: 1.4rem;
+    text-transform: uppercase;
 
     &--name {
       font-size: 1.6rem;
-      color: #bfb17a;
       font-weight: 700;
+      color: #bfb17a;
     }
   }
 
   &__add-dish {
-    display: block;
     margin: 15px auto 0;
-    width: 100%;
     padding: 6px 0;
+    border: 2px solid #f7dc7b;
+    width: 100%;
+    display: block;
     text-transform: uppercase;
     font-weight: 600;
     background-color: #fde383;
-    border: 2px solid #f7dc7b;
-    color: #4c4c4c;
+    color: $darkGray;
     letter-spacing: 1px;
 
     &:disabled {
-      background-color: #e8e6e1;
-      border-color: #eaeae9;
-      color: #bfbfbe;
+      @include disabledButton();
     }
   }
 }
 
 .ingredients {
-  display: flex;
-  flex-wrap: wrap;
+  @include flexWrap();
 
   &__title {
     margin: 0;
@@ -127,12 +113,12 @@
 }
 
 .ingredient {
-  background-color: #fff0c8;
   margin: 12px 6px 0 0;
   padding: 5px 10px;
-  border-radius: 4px;
   display: flex;
   align-items: center;
+  background-color: #fff0c8;
+  border-radius: 4px;
 
   &__name {
     margin: 0;
@@ -140,13 +126,12 @@
 
   &__add-to-list {
     margin-left: 10px;
+    border: 2px solid #c7c6c4;
+    @include handleSize(40px, 30px);
     font-weight: 600;
     background-color: #dad7ca;
-    border: 2px solid #c7c6c4;
     color: #42413d;
     border-radius: 4px;
-    width: 40px;
-    height: 30px;
 
     &:disabled {
       color: #b5b2a5;
@@ -169,16 +154,13 @@
     }
 
     &__edit,
-    &__delete {
+    &__delete,
+    &__category--name {
       font-size: 1.8rem;
     }
 
     &__category {
       font-size: 1.6rem;
-
-      &--name {
-        font-size: 1.8rem;
-      }
     }
 
     &__add-dish {
@@ -226,43 +208,40 @@
       }
 
       &:nth-of-type(3n + 2) {
-        margin-left: 6px;
-        margin-right: 6px;
+        margin: 0 6px 15px;
       }
 
       &:nth-of-type(3n) {
-        margin-right: 0;
-        margin-left: 12px;
+        margin: 0 0 15px 12px;
       }
     }
 
     &--list-dishes {
-      flex-basis: 46%;
       padding: 20px;
+      flex-basis: 46%;
     }
 
     &--set-dishes {
-      flex-basis: 28%;
       margin-right: 46px;
+      flex-basis: 28%;
 
       &:nth-of-type(3n + 2) {
-        margin-left: 23px;
-        margin-right: 23px;
+        margin: 0 23px 20px;
       }
 
       &:nth-of-type(3n) {
-        margin-right: 0;
-        margin-left: 46px;
+        margin: 0 0 20px 46px;
       }
 
       &::before {
-        font-size: 2.5rem;
         left: -26px;
+        font-size: 2.5rem;
       }
     }
 
     &__edit,
-    &__delete {
+    &__delete,
+    &__add-dish {
       font-size: 2rem;
       cursor: pointer;
     }
@@ -272,17 +251,12 @@
     }
 
     &__category {
-      cursor: default;
       font-size: 1.8rem;
+      cursor: default;
 
       &--name {
         font-size: 2rem;
       }
-    }
-
-    &__add-dish {
-      cursor: pointer;
-      font-size: 2rem;
     }
   }
 }

@@ -1,33 +1,27 @@
 .section-settings {
-  width: 90%;
   margin: 10px auto 20px;
   padding: 20px 10px;
+  width: 90%;
   background-color: #f1f1f1;
   border-radius: 20px;
 
   &__info {
     margin: 0;
-    font-weight: 400;
     text-align: center;
+    font-weight: 400;
   }
 
   &__save-btn {
+    @include mainYellowButton();
     margin: 40px auto 0;
     padding: 6px 0;
     width: 70%;
     display: block;
-    text-transform: uppercase;
-    font-weight: 600;
     letter-spacing: 1px;
-    background-color: #ffd324;
-    border: 2px solid #f1d463;
     border-radius: 4px;
-    color: #615423;
 
     &:disabled {
-      border-color: #dad6c5;
-      background-color: #dad6c5;
-      color: #989898;
+      @include disabledButton();
     }
   }
 
@@ -47,21 +41,19 @@
 }
 
 .option-items {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
   margin-top: 20px;
+  @include flexWrap();
+  justify-content: space-around;
 }
 
 .option-item {
-  flex-basis: 44%;
   margin: 4px 0;
   display: flex;
   align-items: center;
+  flex-basis: 44%;
 
   &__checkbox {
-    width: 24px;
-    height: 24px;
+    @include handleSize(24px, 24px);
   }
 
   &__name {
@@ -88,8 +80,8 @@
 
 @media (min-width: 480px) {
   .section-settings {
-    width: 85%;
     padding: 20px;
+    width: 85%;
 
     &__info {
       font-size: 1.8rem;
@@ -107,8 +99,8 @@
 
 @media (min-width: 1024px) {
   .section-settings {
-    width: 80%;
     padding: 35px 40px;
+    width: 80%;
 
     &__info {
       font-size: 2.4rem;
@@ -155,9 +147,8 @@
     flex-basis: 45%;
 
     &__checkbox {
+      @include handleSize(28px, 28px);
       cursor: pointer;
-      width: 28px;
-      height: 28px;
     }
 
     &__name {
