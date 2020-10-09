@@ -1,10 +1,5 @@
-import React, {
-  Component
-} from "react";
-import {
-  Switch,
-  Route
-} from "react-router-dom";
+import React, { Component } from "react";
+import { Switch, Route } from "react-router-dom";
 import StructureSettings from "../route-components/StructureSettings";
 import HomePage from "../route-components/HomePage";
 import PlanMeals from "../route-components/PlanMeals";
@@ -15,9 +10,7 @@ import ListDishes from "../route-components/ListDishes";
 import AddDish from "../route-components/AddDish";
 import EditDish from "../route-components/EditDish";
 import NoPage from "../route-components/NoPage";
-import {
-  confirmAlert
-} from "react-confirm-alert";
+import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
 class RouteSections extends Component {
@@ -195,7 +188,7 @@ class RouteSections extends Component {
     const ingredient = {
       name: ingredientName,
       id: generateId,
-      added: false
+      added: false,
     };
 
     ingredients.push(ingredient);
@@ -231,12 +224,7 @@ class RouteSections extends Component {
 
     const generateId = Math.random().toString(36).substr(2, 9);
 
-    const {
-      categoryDish,
-      nameDish,
-      ingredients,
-      kcal
-    } = this.state.infoDish;
+    const { categoryDish, nameDish, ingredients, kcal } = this.state.infoDish;
 
     listDishes.push({
       id: generateId,
@@ -341,7 +329,7 @@ class RouteSections extends Component {
     const product = {
       name: nameProduct,
       count: countProduct,
-      id: generateId
+      id: generateId,
     };
 
     shoppingList.push(product);
@@ -356,11 +344,10 @@ class RouteSections extends Component {
   };
 
   handleOpenEditProductList = (e) => {
-
     window.scroll({
       top: 0,
       left: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
 
     const shoppingList = [...this.state.shoppingList];
@@ -403,14 +390,8 @@ class RouteSections extends Component {
   handleEditProductList = (e) => {
     e.preventDefault();
     const shoppingList = [...this.state.shoppingList];
-    const {
-      id,
-      name,
-      count
-    } = this.state.infoProduct;
-    const {
-      idEditProduct
-    } = this.state;
+    const { id, name, count } = this.state.infoProduct;
+    const { idEditProduct } = this.state;
 
     const addedIngredient = shoppingList[idEditProduct].added;
 
@@ -419,7 +400,7 @@ class RouteSections extends Component {
       name,
       count,
       ...(addedIngredient && {
-        added: true
+        added: true,
       }),
     };
 
@@ -489,11 +470,7 @@ class RouteSections extends Component {
   handleSearchDish = (e) => {
     e.preventDefault();
 
-    const {
-      listDishes,
-      valueSearchSetDishes,
-      chooseMealToSet
-    } = this.state;
+    const { listDishes, valueSearchSetDishes, chooseMealToSet } = this.state;
 
     let arrSearchDishesToSetDish = [...this.state.arrSearchDishesToSetDish];
 
@@ -530,9 +507,7 @@ class RouteSections extends Component {
   handleAddDishToMealForDay = (idAddDish) => {
     const setDishes = [...this.state.setDishes];
     let listDishes = [...this.state.listDishes];
-    const {
-      chooseDayToSetDishes
-    } = this.state;
+    const { chooseDayToSetDishes } = this.state;
     let setForDay;
 
     const setDish = listDishes.find((dish) => {
@@ -599,9 +574,7 @@ class RouteSections extends Component {
     const setDishes = [...this.state.setDishes];
     const chooseMeal = e.target.innerHTML;
     let setDishesInMealOfDay = [...this.state.setDishesInMealOfDay];
-    const {
-      chooseDayToSetDishes
-    } = this.state;
+    const { chooseDayToSetDishes } = this.state;
 
     if (setDishesInMealOfDay.length !== 0) {
       this.setState({
@@ -727,7 +700,8 @@ class RouteSections extends Component {
   handleClearSetPlanMeals = () => {
     confirmAlert({
       message: "Are you sure, that you clear all set meals?",
-      buttons: [{
+      buttons: [
+        {
           label: "Yes",
           onClick: () => {
             this.setState({
@@ -764,325 +738,170 @@ class RouteSections extends Component {
       setDishesInMealOfDay,
     } = this.state;
 
-    return ( <
-      main >
-      <
-      Switch >
-      <
-      Route path = "/structure-settings"
-      render = {
-        () => {
-          return ( <
-            StructureSettings handleSaveStructureSetting = {
-              this.handleSaveStructureSetting
-            }
-            handleSaveNewStructureSetting = {
-              this.handleSaveNewStructureSetting
-            }
-            statusSetStructureSettings = {
-              statusSetStructureSettings
-            }
-            shoppingListLength = {
-              shoppingList.length
-            }
-            />
-          );
-        }
-      }
-      />
-
-      <
-      Route path = "/"
-      exact render = {
-        () => {
-          return statusSetStructureSettings ? ( <
-            HomePage shoppingListLength = {
-              shoppingList.length
-            }
-            />
-          ) : ( <
-            StructureSettings handleSaveStructureSetting = {
-              this.handleSaveStructureSetting
-            }
-            handleSaveNewStructureSetting = {
-              this.handleSaveNewStructureSetting
-            }
-            statusSetStructureSettings = {
-              statusSetStructureSettings
-            }
-            shoppingListLength = {
-              shoppingList.length
-            }
-            />
-          );
-        }
-      }
-      />
-
-      <
-      Route path = "/plan-meals"
-      render = {
-        () => {
-          return ( <
-            PlanMeals daysSet = {
-              daysSet
-            }
-            mealsSet = {
-              mealsSet
-            }
-            setDishes = {
-              setDishes
-            }
-            handleOpenPlanForDay = {
-              this.handleOpenPlanForDay
-            }
-            chooseDayToSetDishes = {
-              chooseDayToSetDishes
-            }
-            shoppingList = {
-              shoppingList
-            }
-            handleAddIngredientToShoppingList = {
-              this.handleAddIngredientToShoppingList
-            }
-            handleClearOpenMenuItem = {
-              this.handleClearOpenMenuItem
-            }
-            handleClearSetPlanMeals = {
-              this.handleClearSetPlanMeals
-            }
-            />
-          );
-        }
-      }
-      />
-
-      <
-      Route path = "/set-dishes-for-day"
-      render = {
-        () => {
-          return ( <
-            SetDishesForDay mealsSet = {
-              mealsSet
-            }
-            chooseDayToSetDishes = {
-              chooseDayToSetDishes
-            }
-            handleChooseMealToSet = {
-              this.handleChooseMealToSet
-            }
-            chooseMealToSet = {
-              chooseMealToSet
-            }
-            handleClearStatusSetDishes = {
-              this.handleClearStatusSetDishes
-            }
-            handleShowDishes = {
-              this.handleShowDishes
-            }
-            setDishesInMealOfDay = {
-              setDishesInMealOfDay
-            }
-            handleDeleteDishOfSetList = {
-              this.handleDeleteDishOfSetList
-            }
-            />
-          );
-        }
-      }
-      />
-
-      <
-      Route path = "/set-dish-for-day"
-      render = {
-        () => {
-          return ( <
-            SetDishForDay chooseDayToSetDishes = {
-              chooseDayToSetDishes
-            }
-            handleClearSetSettings = {
-              this.handleClearSetSettings
-            }
-            chooseMealToSet = {
-              chooseMealToSet
-            }
-            chooseOptionSetDish = {
-              chooseOptionSetDish
-            }
-            handleChooseOptionSetDish = {
-              this.handleChooseOptionSetDish
-            }
-            handleSearchDish = {
-              this.handleSearchDish
-            }
-            valueSearchSetDishes = {
-              valueSearchSetDishes
-            }
-            handleChangeValue = {
-              this.handleChangeValue
-            }
-            arrSearchDishesToSetDish = {
-              arrSearchDishesToSetDish
-            }
-            statusSearchDishesByCategory = {
-              statusSearchDishesByCategory
-            }
-            statusSearchDishesByName = {
-              statusSearchDishesByName
-            }
-            handleAddDishToMealForDay = {
-              this.handleAddDishToMealForDay
-            }
-            />
-          );
-        }
-      }
-      />
-
-      <
-      Route path = "/shopping-list"
-      render = {
-        () => {
-          return ( <
-            ShoppingList infoProduct = {
-              infoProduct
-            }
-            shoppingList = {
-              shoppingList
-            }
-            handleAddProductToShoppingList = {
-              this.handleAddProductToShoppingList
-            }
-            handleChangeInfoProduct = {
-              this.handleChangeInfoProduct
-            }
-            statusOpenEditProduct = {
-              statusOpenEditProduct
-            }
-            idEditProduct = {
-              idEditProduct
-            }
-            handleEditProductList = {
-              this.handleEditProductList
-            }
-            handleOpenEditProductList = {
-              this.handleOpenEditProductList
-            }
-            handleDeleteProductList = {
-              this.handleDeleteProductList
-            }
-            handleClearOpenMenuItem = {
-              this.handleClearOpenMenuItem
-            }
-            />
-          );
-        }
-      }
-      />
-
-      <
-      Route path = "/list-dishes"
-      render = {
-        () => {
-          return ( <
-            ListDishes mealsSet = {
-              mealsSet
-            }
-            listDishes = {
-              listDishes
-            }
-            handleDeleteDishOfList = {
-              this.handleDeleteDishOfList
-            }
-            handleOpenEditDish = {
-              this.handleOpenEditDish
-            }
-            shoppingListLength = {
-              shoppingList.length
-            }
-            />
-          );
-        }
-      }
-      />
-
-      <
-      Route path = "/add-dish"
-      render = {
-        () => {
-          return ( <
-            AddDish infoDish = {
-              infoDish
-            }
-            mealsSet = {
-              mealsSet
-            }
-            handleChangeChooseCategory = {
-              this.handleChangeChooseCategory
-            }
-            handleChangeValueInfoDish = {
-              this.handleChangeValueInfoDish
-            }
-            handleAddIngredients = {
-              this.handleAddIngredients
-            }
-            handleDeleteIngredients = {
-              this.handleDeleteIngredients
-            }
-            handleClearValues = {
-              this.handleClearValues
-            }
-            handleAddDishToList = {
-              this.handleAddDishToList
-            }
-            />
-          );
-        }
-      }
-      />
-
-      <
-      Route path = "/edit-dish"
-      render = {
-        () => {
-          return ( <
-            EditDish infoDish = {
-              infoDish
-            }
-            mealsSet = {
-              mealsSet
-            }
-            handleEditDish = {
-              this.handleEditDish
-            }
-            handleClearValues = {
-              this.handleClearValues
-            }
-            handleChangeChooseCategory = {
-              this.handleChangeChooseCategory
-            }
-            handleChangeValueInfoDish = {
-              this.handleChangeValueInfoDish
-            }
-            handleAddIngredients = {
-              this.handleAddIngredients
-            }
-            handleDeleteIngredients = {
-              this.handleDeleteIngredients
-            }
-            />
-          );
-        }
-      }
-      />
-
-      <
-      Route component = {
-        NoPage
-      }
-      /> < /
-      Switch > <
-      /main>
+    return (
+      <Switch>
+        <Route
+          path="/structure-settings"
+          render={() => {
+            return (
+              <StructureSettings
+                handleSaveStructureSetting={this.handleSaveStructureSetting}
+                handleSaveNewStructureSetting={
+                  this.handleSaveNewStructureSetting
+                }
+                statusSetStructureSettings={statusSetStructureSettings}
+                shoppingListLength={shoppingList.length}
+              />
+            );
+          }}
+        />
+        <Route
+          path="/"
+          exact
+          render={() => {
+            return statusSetStructureSettings ? (
+              <HomePage shoppingListLength={shoppingList.length} />
+            ) : (
+              <StructureSettings
+                handleSaveStructureSetting={this.handleSaveStructureSetting}
+                handleSaveNewStructureSetting={
+                  this.handleSaveNewStructureSetting
+                }
+                statusSetStructureSettings={statusSetStructureSettings}
+                shoppingListLength={shoppingList.length}
+              />
+            );
+          }}
+        />
+        <Route
+          path="/plan-meals"
+          render={() => {
+            return (
+              <PlanMeals
+                daysSet={daysSet}
+                mealsSet={mealsSet}
+                setDishes={setDishes}
+                handleOpenPlanForDay={this.handleOpenPlanForDay}
+                chooseDayToSetDishes={chooseDayToSetDishes}
+                shoppingList={shoppingList}
+                handleAddIngredientToShoppingList={
+                  this.handleAddIngredientToShoppingList
+                }
+                handleClearOpenMenuItem={this.handleClearOpenMenuItem}
+                handleClearSetPlanMeals={this.handleClearSetPlanMeals}
+              />
+            );
+          }}
+        />
+        <Route
+          path="/set-dishes-for-day"
+          render={() => {
+            return (
+              <SetDishesForDay
+                mealsSet={mealsSet}
+                chooseDayToSetDishes={chooseDayToSetDishes}
+                handleChooseMealToSet={this.handleChooseMealToSet}
+                chooseMealToSet={chooseMealToSet}
+                handleClearStatusSetDishes={this.handleClearStatusSetDishes}
+                handleShowDishes={this.handleShowDishes}
+                setDishesInMealOfDay={setDishesInMealOfDay}
+                handleDeleteDishOfSetList={this.handleDeleteDishOfSetList}
+              />
+            );
+          }}
+        />
+        <Route
+          path="/set-dish-for-day"
+          render={() => {
+            return (
+              <SetDishForDay
+                chooseDayToSetDishes={chooseDayToSetDishes}
+                handleClearSetSettings={this.handleClearSetSettings}
+                chooseMealToSet={chooseMealToSet}
+                chooseOptionSetDish={chooseOptionSetDish}
+                handleChooseOptionSetDish={this.handleChooseOptionSetDish}
+                handleSearchDish={this.handleSearchDish}
+                valueSearchSetDishes={valueSearchSetDishes}
+                handleChangeValue={this.handleChangeValue}
+                arrSearchDishesToSetDish={arrSearchDishesToSetDish}
+                statusSearchDishesByCategory={statusSearchDishesByCategory}
+                statusSearchDishesByName={statusSearchDishesByName}
+                handleAddDishToMealForDay={this.handleAddDishToMealForDay}
+              />
+            );
+          }}
+        />
+        <Route
+          path="/shopping-list"
+          render={() => {
+            return (
+              <ShoppingList
+                infoProduct={infoProduct}
+                shoppingList={shoppingList}
+                handleAddProductToShoppingList={
+                  this.handleAddProductToShoppingList
+                }
+                handleChangeInfoProduct={this.handleChangeInfoProduct}
+                statusOpenEditProduct={statusOpenEditProduct}
+                idEditProduct={idEditProduct}
+                handleEditProductList={this.handleEditProductList}
+                handleOpenEditProductList={this.handleOpenEditProductList}
+                handleDeleteProductList={this.handleDeleteProductList}
+                handleClearOpenMenuItem={this.handleClearOpenMenuItem}
+              />
+            );
+          }}
+        />
+        <Route
+          path="/list-dishes"
+          render={() => {
+            return (
+              <ListDishes
+                mealsSet={mealsSet}
+                listDishes={listDishes}
+                handleDeleteDishOfList={this.handleDeleteDishOfList}
+                handleOpenEditDish={this.handleOpenEditDish}
+                shoppingListLength={shoppingList.length}
+              />
+            );
+          }}
+        />
+        <Route
+          path="/add-dish"
+          render={() => {
+            return (
+              <AddDish
+                infoDish={infoDish}
+                mealsSet={mealsSet}
+                handleChangeChooseCategory={this.handleChangeChooseCategory}
+                handleChangeValueInfoDish={this.handleChangeValueInfoDish}
+                handleAddIngredients={this.handleAddIngredients}
+                handleDeleteIngredients={this.handleDeleteIngredients}
+                handleClearValues={this.handleClearValues}
+                handleAddDishToList={this.handleAddDishToList}
+              />
+            );
+          }}
+        />
+        <Route
+          path="/edit-dish"
+          render={() => {
+            return (
+              <EditDish
+                infoDish={infoDish}
+                mealsSet={mealsSet}
+                handleEditDish={this.handleEditDish}
+                handleClearValues={this.handleClearValues}
+                handleChangeChooseCategory={this.handleChangeChooseCategory}
+                handleChangeValueInfoDish={this.handleChangeValueInfoDish}
+                handleAddIngredients={this.handleAddIngredients}
+                handleDeleteIngredients={this.handleDeleteIngredients}
+              />
+            );
+          }}
+        />
+        <Route component={NoPage} />{" "}
+      </Switch>
     );
   }
 }

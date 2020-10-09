@@ -9,9 +9,11 @@ import { BrowserRouter } from "react-router-dom";
 const App = () => {
   return (
     <div className="wrapper">
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Header />
-        <RouteSections />
+        <main>
+          <RouteSections />
+        </main>
         <Footer />
       </BrowserRouter>
     </div>
