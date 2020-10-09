@@ -18,7 +18,7 @@ const AddProduct = (props) => {
     >
       <div className="add-product__box">
         <label htmlFor="nameProduct" className="add-product__label">
-          name of product in shopping list
+          name of product
         </label>
         <input
           id="nameProduct"
